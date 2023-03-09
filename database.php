@@ -1,12 +1,15 @@
 <?php
-	$server = "mysql";
-	$username = "root";
-	$password = "1234";
-	$database = "csra";
-
-	try{
-		$conn = new PDO("mysql:host=$server;dbname=$database",$username,$password);
-	}catch(PDOException $e){
-		die("Connection Failed: " . $e->getMessage());
+/* variables de configuracion */
+/* require_once("config.php"); */
+class Connection{
+	public static function connect(){
+		include "config.php" ;
+		try{
+			$conn = new PDO("mysql:host=$server;dbname=$database",$username,$password);
+			return $conn;
+		}catch(PDOException $e){
+			die("Connection Failed: " . $e->getMessage());
+		}
 	}
+}
 ?>
