@@ -4,7 +4,6 @@ class UserModel{
 	private $users;
 
 	public function __construct(){
-		require_once("database.php");
 		$this->db=Connection::connect();
 		$this->users=array();
 	}
@@ -12,6 +11,18 @@ class UserModel{
 	public function getUsers(){
 		$sql = "SELECT * FROM users;";
 		$state = $this->db->prepare($sql);
+		if($state->execute()){
+			while($row=$state->fetch(PDO::FETCH_ASSOC)){
+				$this->users[]=$row;
+			}
+			return $this->users;
+		}
+	}
+
+	public function getUserById($id){
+		$sql = "SELECT * FROM users WHERE id=:id";
+		$state = $this->db->prepare($sql);
+		$state->bindParam(":id",$id);
 		if($state->execute()){
 			while($row=$state->fetch(PDO::FETCH_ASSOC)){
 				$this->users[]=$row;
