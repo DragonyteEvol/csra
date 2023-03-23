@@ -12,8 +12,24 @@ class UserController{
 	}
 
 	public function show(){
-		$data=$this->model->getUserById(2);
+		$id = $_GET["id"];
+		$data=$this->model->getUserById($id);
 		var_dump($data);
+	}
+
+	public function create(){
+		$this->model->name = "test";
+		$this->model->email = "test@hotmail.com";
+		$this->model->password= "1234";
+		$this->model->insert();
+	}
+
+	public function update(){
+		$this->model->id = 1;
+		$this->model->name = "pablo";
+		$this->model->email = "test12@hotmail.com";
+		$this->model->password= "1234";
+		$this->model->update();
 	}
 
 	/* index - lista todos los elementos */

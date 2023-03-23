@@ -1,5 +1,6 @@
 <?php
 require_once("database.php");
+require("models/Model.php");
 /* var_dump($_GET); */
 $controller = $_GET["controller"];
 $action = $_GET["action"];
