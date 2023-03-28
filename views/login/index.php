@@ -12,11 +12,16 @@
 			<div class="row justify-content-center">
 				<div class="col-sm-10 col-md-8 col-lg-4">
 					<h1>Iniciar sesion</h1>
-					<span>o <a href="singup.php">Registrarse</a></span>
+					<span>o <a href="/register">Registrarse</a></span>
 					<!-- formulario de inicio de sesion -->
-					<form action="controllers/UserController.php" method="POST">
-						<input type="text" class="form-control my-2" placeholder="Ingresa tu nombre" name="name">
-						<input type="password" class="form-control my-2" placeholder="Ingresa tu contraseña" name="password">
+					<form action="/login/login" method="POST" class="needs-validation">
+						<?php if($_SESSION["error"]){?>
+						<div class="p-3 text-danger-emphasis bg-danger-subtle border border-danger-subtle rounded-3">
+							credenciales incorrectas
+						</div>
+						<?php } ?>
+						<input required type="text" id="validationDefault01" oninvalid="this.setCustomValidity('Ingresa un correo')" class="form-control my-2" placeholder="Ingresa tu correo" name="email">
+						<input required type="password" id="validationDefault01" class="form-control my-2" placeholder="Ingresa tu contraseña" oninvalid="this.setCustomValidity('Ingresa una contraseña')" name="password">
 						<input class="form-control my-2 btn btn-primary" type="submit" value="Enviar">
 					</form>
 				</div>

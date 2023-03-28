@@ -6,11 +6,9 @@
 </head>
 <body>
 	<ul>
-		<li><a href="http://localhost:9090/user/show/1">1</a></li>
-		<li><a href="http://localhost:9090/user/show/2">2</a></li>
-		<li><a href="localhost:9090/user/show/3">3</a></li>
-		<li><a href="localhost:9090/user/show/4">4</a></li>
-		<li><a href="localhost:9090/user/show/5">5</a></li>
+		<?php foreach($data as $user): ?>
+		<li><a href="/user/show/<?= $user["id"] ?>"><?= $user["email"] ?></a></li>
+		<?php endforeach; ?>
 	</ul>
 </form>
 </body>

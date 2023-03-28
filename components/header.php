@@ -8,13 +8,13 @@
     <div class="collapse navbar-collapse" id="navbarNavDropdown">
       <ul class="navbar-nav">
         <li class="nav-item">
-          <a class="nav-link" aria-current="page" href="/">Inicio</a>
+          <a class="nav-link" aria-current="page" href="/risk">Inicio</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="#">Riesgos</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Indicadores clave de riesgo (kri)</a>
+          <a class="nav-link" href="#">KRI's</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="#">Eventos</a>
@@ -24,6 +24,8 @@
           <ul class="dropdown-menu">
             <li><a class="dropdown-item" href="#">Usuarios</a></li>
             <li><a class="dropdown-item" href="#">Fuentes</a></li>
+            <li><a class="dropdown-item" href="#">Propiedades</a></li>
+            <li><a class="dropdown-item" href="#">Tipos</a></li>
             <li><a class="dropdown-item" href="#">Configuracion</a></li>
           </ul>
         </li>

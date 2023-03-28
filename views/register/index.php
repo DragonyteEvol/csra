@@ -11,9 +11,9 @@
 		<div class="row justify-content-center">
 			<div class="col-sm-10 col-md-8 col-lg-4">
 				<h1>Registrarse</h1>
-				<span>o <a href="login.php">Iniciar sesion</a></span>
+				<span>o <a href="/login">Iniciar sesion</a></span>
 				<!-- formulario para creacion de usuarios -->
-				<form action="" method="POST">
+				<form action="/register/register" method="POST">
 					<input type="text" class="form-control my-2" placeholder="Ingresa tu nombre" name="name">
 					<input type="text" class="form-control my-2" placeholder="Ingresa tu email" name="email">
 					<input type="password" class="form-control my-2" placeholder="Ingresa tu contraseña" name="password">

@@ -1,17 +1,34 @@
 <?php 
 class Model{
-	private $db;
+	public $db;
 	private $data;
 
-	public function __construct(){
-		$this->db=Connection::connect();
-		$this->data=array();
+	public function __construct($second_database = FALSE){
+		$this->db=Connection::connect($second_database);
+	}
+	public function getCustom($sql){
+		$state = $this->db->prepare($sql);
+		if($state->execute()){
+			while($row=$state->fetch(PDO::FETCH_ASSOC)){
+				$this->data[]=$row;
+			}
+			return $this->data;
+		}
 	}
 
 	/* toma todos los usuarios de la base de datos */
 	/* 	retorna un lista con usuarios */
-	public function getUsers(){
-		$sql = "SELECT * FROM $this->table";
+	/* puede recibir un array de nobres de tablas para generar una relacion de uno a muchos */
+	public function getAll(){
+		$sql = "SELECT *,$this->table.id as id_master FROM $this->table ";
+		/* relacion de tablas */
+		if(count($this->relations)<>0){
+			foreach($this->relations as $join){
+				$column = (substr($join,0,-1)) . "_id";
+				$sql = $sql . "INNER JOIN $join ON $this->table.$column=$join.id ";
+			}
+		}
+		/* ejecucion de query */
 		$state = $this->db->prepare($sql);
 		if($state->execute()){
 			while($row=$state->fetch(PDO::FETCH_ASSOC)){
@@ -24,7 +41,7 @@ class Model{
 
 	/* toma un usuario por id de la base de datos */
 	/* 	retorna una lista con el usuario */
-	public function getUserById($id){
+	public function selectById($id){
 		$sql = "SELECT * FROM $this->table WHERE id=:id";
 		$state = $this->db->prepare($sql);
 		$state->bindParam(":id",$id);
@@ -62,9 +79,15 @@ class Model{
 		$state = $this->db->prepare($sql);
 		$this->setParams($state);
 		$state->bindParam(":id",$this->id);
-		echo "pedor". $this->id;
 		$state->execute();
 		return $this->db->lastInsertId();
+	}
+
+	public function delete($id){
+		$sql = "DELETE FROM $this->table WHERE id=:id";
+		$state = $this->db->prepare($sql);
+		$state->bindParam(":id",$id);
+		$state->execute();
 	}
 
 	private function setParams($state){
