@@ -20,7 +20,6 @@ class Model{
 	/* 	retorna un lista con usuarios */
 	/* puede recibir un array de nobres de tablas para generar una relacion de uno a muchos */
 	public function getAll(){
-		$sql = "SELECT *,$this->table.id as id_master FROM $this->table ";
 		/* relacion de tablas */
 		if(count($this->relations)<>0){
 			foreach($this->relations as $join){
@@ -42,7 +41,17 @@ class Model{
 	/* toma un usuario por id de la base de datos */
 	/* 	retorna una lista con el usuario */
 	public function selectById($id){
-		$sql = "SELECT * FROM $this->table WHERE id=:id";
+		$sql = "SELECT *,$this->table.id as id_master FROM $this->table WHERE id=:id ";
+		foreach(array_keys($this->much_to_much) as $key){
+			echo $key;
+		}
+		return;
+		if(count($this->much_to_much)<>0){
+			foreach($this->much_to_much as $join){
+				$column = (substr($join,0,-1)) . "_id";
+				$sql = $sql . "INNER JOIN $join ON $this->table.$column=$join.id ";
+			}
+		}
 		$state = $this->db->prepare($sql);
 		$state->bindParam(":id",$id);
 		if($state->execute()){

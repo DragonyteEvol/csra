@@ -6,6 +6,10 @@ class RiskController extends Controller{
 		parent::__construct();
 		$this->model = new RiskModel();
 	}
+
+	public function show(){
+		$this->model->selectById(1);
+	}
 	
 }
 ?>
