@@ -12,7 +12,7 @@ include_once("components/header.php");
     </tr>
   </thead>
   <tbody>
-	  <?php  foreach($data as $risk): ?>
+	  <?php  foreach($data["risks"] as $risk): ?>
 	  <tr>
 		  <th scope="row"><?= $risk["id_master"] ?></th>
 		  <td>

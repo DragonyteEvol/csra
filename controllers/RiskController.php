@@ -7,9 +7,5 @@ class RiskController extends Controller{
 		$this->model = new RiskModel();
 	}
 
-	public function show(){
-		$this->model->selectById(1);
-	}
-	
 }
 ?>

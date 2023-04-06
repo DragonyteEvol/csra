@@ -12,6 +12,7 @@ class SourceModel extends Model{
 	{
 		$sql = "SELECT vendor FROM $this->table GROUP BY 1";
 		$data =$this->getCustom($sql);
+		var_dump($data);
 		return $data;
 	}
 

@@ -20,8 +20,14 @@
 							credenciales incorrectas
 						</div>
 						<?php } ?>
-						<input required type="text" id="validationDefault01" oninvalid="this.setCustomValidity('Ingresa un correo')" class="form-control my-2" placeholder="Ingresa tu correo" name="email">
-						<input required type="password" id="validationDefault01" class="form-control my-2" placeholder="Ingresa tu contraseña" oninvalid="this.setCustomValidity('Ingresa una contraseña')" name="password">
+						<div class="form-floating mb-3">
+							<input type="text" id="validationDefault01" required oninvalid="this.setCustomValidity('Ingresa un correo')" name="email" class="form-control">
+							<label for="floatingInput">Ingresa tu correo</label>
+						</div>
+						<div class="form-floating mb-3">
+							<input type="text" id="validationDefault01" required oninvalid="this.setCustomValidity('Ingresa un contraseña valida')" name="password" class="form-control">
+							<label for="floatingInput">Ingresa tu correo</label>
+						</div>
 						<input class="form-control my-2 btn btn-primary" type="submit" value="Enviar">
 					</form>
 				</div>

@@ -13,7 +13,7 @@ class RiskModel extends Model{
 	protected $relations= ["properties","types"];
 
 	/* relaciones entre bases de datos de muchos a muchos se debe definir las dos tablas que se desean relacionar */
-	protected $much_to_much= ["risks"=>"kris"];
+	protected $much_to_much= ["risks"=>"kris","kris"=>"events"];
 
 	public function __construct(){
 		parent::__construct();
