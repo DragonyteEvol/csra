@@ -40,7 +40,7 @@ include_once("components/header.php");
       </div>
 	  <div class="modal-body">
 		  <!-- formulario de inicio de sesion -->
-		  <form action="/event/create" method="POST" class="needs-validation">
+		  <form action="/event/insert" method="POST" class="needs-validation">
 			<!-- TEMPLATE -->
 			  <div class="form-floating mb-3">
 				  <input type="text" class="form-control" list="datalistOptions" id="template" placeholder="Type to search...">

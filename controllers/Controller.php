@@ -15,6 +15,11 @@ class Controller{
 		require_once("views/$this->controller/index.php");
 	}
 
+	/* despliega el formulario de creacion */
+	public function create(){
+		require_once("views/$this->controller/create.php");
+	}
+
 	/* retorna la vista de mostrar un solo elemento con la informacion del elemnto */
 	public function show(){
 		$id = $_GET["id"]; 
@@ -23,7 +28,7 @@ class Controller{
 	}
 
 	/* crea un elemento y redirecciona al inicio */
-	public function create(){
+	public function insert(){
 		$this->modelParams();
 		$this->model->insert();
 		header("Location: /$this->controller");
