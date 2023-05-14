@@ -11,22 +11,22 @@
           <a class="nav-link" aria-current="page" href="/risk">Inicio</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Riesgos</a>
+          <a class="nav-link" href="/risk">Riesgos</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">KRI's</a>
+          <a class="nav-link" href="/kri">KRI's</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Eventos</a>
+          <a class="nav-link" href="/event">Eventos</a>
         </li>
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Mas</a>
           <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="#">Usuarios</a></li>
-            <li><a class="dropdown-item" href="#">Fuentes</a></li>
-            <li><a class="dropdown-item" href="#">Propiedades</a></li>
-            <li><a class="dropdown-item" href="#">Tipos</a></li>
-            <li><a class="dropdown-item" href="#">Configuracion</a></li>
+            <li><a class="dropdown-item" href="/user">Usuarios</a></li>
+            <li><a class="dropdown-item" href="/source">Fuentes</a></li>
+            <li><a class="dropdown-item" href="/propertie">Propiedades</a></li>
+            <li><a class="dropdown-item" href="/type">Tipos</a></li>
+            <li><a class="dropdown-item" href="/configuration">Configuracion</a></li>
           </ul>
         </li>
       </ul>
@@ -34,3 +34,4 @@
   </div>
 </nav>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+ <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>

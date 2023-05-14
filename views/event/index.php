@@ -3,7 +3,7 @@ include_once("components/header.php");
 ?>
 
 <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalCreate">
-  Launch static backdrop modal
+X
 </button>
 
 <table class="table table-borderless">
@@ -19,7 +19,7 @@ include_once("components/header.php");
 	  <tr>
 		  <th scope="row"><?= $risk["id_master"] ?></th>
 		  <td>
-			  <a href="/event/show/<?= $risk['id_master'] ?>">
+			  <a class="link-dark" href="/event/show/<?= $risk['id_master'] ?>">
 			  <?= $risk["event"] ?>
 			  </a>
 		  </td>
@@ -88,7 +88,7 @@ include_once("components/header.php");
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/axios@1.1.2/dist/axios.min.js"></script>
-<script src="assets/css/js/search.js"></script>
+<script src="assets/js/search.js"></script>
 <script>
 /* searchEvent({ */
 /* componentEvent: "template", */
@@ -110,7 +110,9 @@ componentEvent: "template",
 		["source","vendor"],
 		["event_id","sid"]
 	]),
-	value: "name"
+	value: "name",
+	table: "plugin_sid",
+	tag: "option"
 })
 </script>
 </script>

@@ -30,8 +30,12 @@ class Controller{
 	/* crea un elemento y redirecciona al inicio */
 	public function insert(){
 		$this->modelParams();
-		$this->model->insert();
-		header("Location: /$this->controller");
+		$id = $this->model->insert();
+		if($this->autosave){
+			$this->model->saveChanges();
+			header("Location: /$this->controller");
+		}
+		return $id;
 	}
 
 	/* modifica un elemento y redirecciona al inicio */
@@ -49,8 +53,14 @@ class Controller{
 		header("Location: /$this->controller");
 	}
 
+	public function search(){
+		$search = $_GET["id"];
+		$data = $this->model->search($search);
+		echo json_encode($data);
+	}
+
 	/* relaciona los parametros de entrado por POST con parametros de la clase */
-	private function modelParams(){
+	public function modelParams(){
 		foreach(array_keys($_POST) as $key){
 			$this->model->{$key} = $_POST[$key];
 		}
