@@ -8,7 +8,7 @@ include_once("components/header.php");
 				<div class="row">
 					<div class="input-group mb-3">
 						<a href="/kri/create" class="btn btn-primary" type="button" id="button-addon1">+</a>
-						<input type="text" class="form-control" placeholder="Buscar Kri" aria-label="Example text with button addon" aria-describedby="button-addon1">
+						<input id="search" type="text" class="form-control" placeholder="Buscar Kri" aria-label="Example text with button addon" aria-describedby="button-addon1">
 					</div>
 				</div>
 			</div>
@@ -34,7 +34,7 @@ include_once("components/header.php");
 				<th scope="col">Porcentage</th>
 			</tr>
 		</thead>
-		<tbody>
+		<tbody id="kris">
 			<?php  foreach($data["kris"] as $kri): ?>
 			<tr>
 				<th scope="row"><?= $kri["id_master"] ?></th>
