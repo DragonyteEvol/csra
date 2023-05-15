@@ -8,6 +8,8 @@ class Model{
 		$this->db=Connection::connect($second_database);
 	}
 
+	/* permite ejecutar consultas sql customizadas a cada modelo */
+	/* 	retorna la informacion consultada o registrada */
 	public function getCustom($sql,$param=0){
 		$this->execute($sql,$this->table,$param);
 		return $this->data;
@@ -32,7 +34,6 @@ class Model{
 
 	/* toma un usuario por id de la base de datos */
 	/* 	retorna una lista con el usuario */
-
 	public function selectById($id){
 		$sql = "SELECT *,$this->table.id as master_id FROM $this->table WHERE $this->table.id=:id";
 		$this->execute($sql,$this->table,$id);
@@ -54,6 +55,8 @@ class Model{
 		return $this->data;
 	}
 
+	/* inserta un registro a la base de datos con sus respectivas relaciones */
+	/* 	retorna el id del elemento registrado */
 	public function insert(){
 		try{
 			if(!$this->db->inTransaction()){
@@ -89,6 +92,8 @@ class Model{
 		}
 	}
 
+	/* modifica un elemento en la base de datos */
+	/* 	retorna el ultimo in elemento de la tabla */
 	public function update(){
 		try{
 			if(!$this->db->inTransaction()){
@@ -113,6 +118,8 @@ class Model{
 		}
 	}
 
+	/* borra un elemento de la base de datos */
+	/* 	no retorna informacion */
 	public function delete($id){
 		try{
 			if(!$this->db->inTransaction()){
@@ -127,6 +134,8 @@ class Model{
 		}
 	}
 
+	/* busca elementos en la base de datos */
+	/* 	retorna un array con los elementos encontrados */
 	public function search($search){
 		$column = substr($this->table,0,-1);
 		$sql = "SELECT * FROM $this->table WHERE $column LIKE '%$search%'";
@@ -134,10 +143,14 @@ class Model{
 		return $this->data;
 	}
 
+	/* escribe los cambios en la base de datos si el dml esta en una transaccion */
+	/* 	no retorna informacion pero termina la transaccion actual */
 	public function saveChanges(){
 		$this->db->commit();
 	}
 
+	/* establece las variables de las consultas preparadas */
+	/* 	no retorna informacion pero deja la consulta preparada lista para su ejecucion */
 	private function setParams($state){
 		for($i=0;$i < count($this->args);$i++){
 			if($this->args[$i]==":password"){
@@ -149,6 +162,8 @@ class Model{
 		}
 	}
 
+	/* ejecuta la consulta preparada */
+	/* modifica la variable data adjuntando la informacion en esta variable */
 	private function execute($sql,$key,$id=0){
 		$state = $this->db->prepare($sql);
 		if($id<>0){

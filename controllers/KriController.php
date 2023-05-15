@@ -7,20 +7,13 @@ class KriController extends Controller{
 
 	public function __construct(){
 		parent::__construct();
+		/* modelos */
 		$this->model = new KriModel();
 		$this->qualifier_model = new QualifierModel();
 	}
 
-	/* public function insert(){ */
-	/* 	$this->modelParams(); */
-	/* 	$id = $this->model->insert(); */
-	/* 	$qualifier= new QualifierModel(); */
-	/* 	$qualifier->severalInsert($id); */
-	/* 	$qualifier->saveChanges(); */
-	/* 	$this->model->saveChanges(); */
-	/* 	header("Location: /$this->controller"); */
-	/* } */
-
+	/* inseta un kri en base de datos y sus calificadores */
+	/* 	retorna una redireccion al index de kri */
 	public function insert(){
 		$this->modelParams();
 		$id = $this->model->insert();
