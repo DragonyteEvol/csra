@@ -10,7 +10,7 @@ class RiskModel extends Model{
 	protected $args= [":type_id",":propertie_id",":risk"];
 
 	/* relaciones entre bases de datos uno a muchos */
-	protected $relations= ["properties","types"];
+	protected $one_to_one= ["properties","types"];
 
 	/* relaciones entre bases de datos de muchos a muchos se debe definir las dos tablas que se desean relacionar */
 	protected $much_to_much= ["risks"=>"kris","kris"=>"events"];

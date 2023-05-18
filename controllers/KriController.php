@@ -12,7 +12,7 @@ class KriController extends Controller{
 		$this->qualifier_model = new QualifierModel();
 	}
 
-	/* inseta un kri en base de datos y sus calificadores */
+	/* inserta un kri en base de datos y sus calificadores */
 	/* 	retorna una redireccion al index de kri */
 	public function insert(){
 		$this->modelParams();

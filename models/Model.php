@@ -21,8 +21,8 @@ class Model{
 	public function getAll(){
 		/* relacion de tablas */
 		$sql = "SELECT *,$this->table.id as id_master FROM $this->table ";
-		if(count($this->relations)<>0){
-			foreach($this->relations as $join){
+		if(count($this->one_to_one)<>0){
+			foreach($this->one_to_one as $join){
 				$column = substr($join,0,-1) . "_id";
 				$sql = $sql . "INNER JOIN $join ON $this->table.$column=$join.id ";
 			}
@@ -35,8 +35,30 @@ class Model{
 	/* toma un usuario por id de la base de datos */
 	/* 	retorna una lista con el usuario */
 	public function selectById($id){
-		$sql = "SELECT *,$this->table.id as master_id FROM $this->table WHERE $this->table.id=:id";
+		$sql = "SELECT *,$this->table.id as master_id FROM $this->table ";
+		//RELACION 1 A 1
+		if(count($this->one_to_one)<>0){
+			foreach($this->one_to_one as $join){
+				$column = substr($join,0,-1) . "_id";
+				$sql = $sql . "INNER JOIN $join ON $this->table.$column=$join.id ";
+			}
+		}
+		$sql = $sql . "WHERE $this->table.id=:id";
 		$this->execute($sql,$this->table,$id);
+		//RELACION 1 A MUCHOS
+		if(count($this->one_to_much)<>0){
+			$sql = "SELECT *,$this->table.id as master_id FROM $this->table ";
+			foreach(array_keys($this->one_to_much) as $join){
+				$relation= $this->one_to_much[$join];//QUALIFIERS;
+				$column_2 = substr($join,0,-1) . "_id"; //KRI_ID;
+				$sql = $sql . "INNER JOIN $relation ON $join.id=$relation.$column_2 ";
+				$sql = $sql . "WHERE $this->table.id=:id";
+				$this->data["sql"]=$sql;
+				$this->execute($sql,$relation,$id);
+				$sql = str_replace("WHERE $this->table.id=:id","",$sql);
+			}
+		}
+		//RELACION MUCHOS A MUCHOS
 		if(count($this->much_to_much)<>0){
 			$sql = "SELECT *,$this->table.id as master_id FROM $this->table ";
 			foreach(array_keys($this->much_to_much) as $join){
