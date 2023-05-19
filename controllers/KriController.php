@@ -22,5 +22,9 @@ class KriController extends Controller{
 		header("Location: /$this->controller");
 	}
 
+	public function update(){
+		var_dump($_POST);
+	}
+
 }
 ?>
