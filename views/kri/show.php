@@ -7,7 +7,7 @@ include_once("components/header.php");
 		<div class="card my-5">
 			<?php  foreach($data["kris"] as $kri): ?>
 			<div class="card-header">
-				<h5><b><?=$kri['master_id']?>.</b>Visualizacion de KRI <?=$kri['kri']?></h5>
+				<h5><b><?=$kri['master_id']?> | </b><?=$kri['kri']?></h5>
 			</div>
 			<div class="card-body">
 				<!-- KRI -->
