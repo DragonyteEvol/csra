@@ -59,7 +59,7 @@ include_once("components/header.php");
 								<?php  foreach($data["events"] as $event): ?>
 								<div class="form-check">
 									<input type="checkbox" checked id="<?= $event['event'] ?>" value="<?= $event['id'] ?>" name="event[]" class="form-check-input">
-									<label class="form-check-label" for="<?= $event['event'] ?>"><?= $event['event'] ?></label>
+									<label class="form-check-label" for="<?= $event['event'] ?>"><?= $event['id']." | ".$event['event'] ?></label>
 								</div>
 								<?php  endforeach; ?>
 							</div>

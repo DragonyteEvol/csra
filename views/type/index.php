@@ -7,8 +7,11 @@ include_once("components/header.php");
 			<div class="col-6">
 				<div class="row">
 					<div class="input-group mb-3">
-						<a href="/kri/create" class="btn btn-primary" type="button" id="button-addon1">+</a>
-						<input id="search" type="text" class="form-control" placeholder="Buscar Kri" aria-label="Example text with button addon" aria-describedby="button-addon1">
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalCreate">
++
+</button>
+
+						<input id="search" type="text" class="form-control" placeholder="Buscar tipos" aria-label="Example text with button addon" aria-describedby="button-addon1">
 					</div>
 				</div>
 			</div>
@@ -28,43 +31,41 @@ include_once("components/header.php");
 		<thead>
 			<tr>
 				<th scope="col">#</th>
-				<th scope="col">KRI</th>
-				<th scope="col">Objetivo</th>
-				<th scope="col">Propiedad</th>
-				<th scope="col">Porcentage</th>
+				<th scope="col">Tipo</th>
+				<th scope="col">Fecha de creacion</th>
 			</tr>
 		</thead>
-		<tbody id="kris">
-			<?php  foreach($data["kris"] as $kri): ?>
+		<tbody id="types">
+			<?php  foreach($data["types"] as $kri): ?>
 			<tr>
 				<th scope="row"><?= $kri["id_master"] ?></th>
 				<td>
-					<a href="/kri/show/<?= $kri['id_master'] ?>">
-						<?= $kri["kri"] ?>
+					<a href="/type/show/<?= $kri['id_master'] ?>">
+						<?= $kri["type"] ?>
 					</a>
 				</td>
-				<td><?= $kri["objective"] ?></td>
-				<td><?= $kri["propertie"] ?></td>
-				<td><?= $kri["percentage"] ?>%</td>
+				<td><?= $kri["created_at"] ?></td>
 			</tr>
 			<?php  endforeach; ?>
 		</tbody>
 	</table>
 </div>
+<div id="modalCreate" class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+...
+</div>
+
 <script src="https://cdn.jsdelivr.net/npm/axios@1.1.2/dist/axios.min.js"></script>
 <script src="assets/js/search.js"></script>
 <script>
 searchTable({
-	componentEvent: "search",
-	listOptions: "kris",
-	search: "kri",
+componentEvent: "search",
+	listOptions: "types",
+	search: "type",
 	components: [
-		"objective",
-		"propertie",
-		"percentage"
+		"created_at"
 	],
-	value: "kri",
-	table: "kris",
+	value: "type",
+	table: "types",
 })
 </script>
 </script>

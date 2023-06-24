@@ -14,7 +14,6 @@ $action = $_GET["action"];
 /* http://sy.com/mycontroller/show/1 =====>>> 1*/
 $id = $_GET["id"];
 
-
 if(empty($action)){
 	$action = "index";
 }

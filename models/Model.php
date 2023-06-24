@@ -159,8 +159,15 @@ class Model{
 	/* busca elementos en la base de datos */
 	/* 	retorna un array con los elementos encontrados */
 	public function search($search){
+		$sql = "SELECT *,$this->table.id as master_id FROM $this->table ";
+		if(count($this->one_to_one)<>0){
+			foreach($this->one_to_one as $join){
+				$column = substr($join,0,-1) . "_id";
+				$sql = $sql . "INNER JOIN $join ON $this->table.$column=$join.id ";
+			}
+		}
 		$column = substr($this->table,0,-1);
-		$sql = "SELECT * FROM $this->table WHERE $column LIKE '%$search%'";
+		$sql=$sql . " WHERE $column LIKE '%$search%'";
 		$this->execute($sql,$this->table);
 		return $this->data;
 	}

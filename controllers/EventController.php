@@ -13,7 +13,6 @@ class EventController extends Controller{
 		$numbers = [0,1,2,3,4,5,6,7,8,9];
 		$syntax = "(22+3)+(4*825)";
 		$z=4;
-		is_
 		if(is_numeric($syntax[$z])){
 			echo $syntax[$z];
 		}
