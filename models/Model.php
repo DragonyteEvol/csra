@@ -1,7 +1,7 @@
 <?php 
 class Model{
 	public $db;
-	private $data;
+	public $data;
 	private $process_data;
 
 	public function __construct($second_database = FALSE){
@@ -193,7 +193,7 @@ class Model{
 
 	/* ejecuta la consulta preparada */
 	/* modifica la variable data adjuntando la informacion en esta variable */
-	private function execute($sql,$key,$id=0){
+	public function execute($sql,$key,$id=0){
 		$state = $this->db->prepare($sql);
 		if($id<>0){
 			$state->bindParam(":id",$id);

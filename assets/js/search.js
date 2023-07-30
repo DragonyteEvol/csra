@@ -111,7 +111,11 @@ function searchTable(args){
 				html+="<tr><th scope='row'>"+p.master_id+"</th>"
 				html+="<td><a href='/"+args.value+"/show/"+p.master_id+"'>"+p[args.value]+"</a></td>"
 				for(o of args.components){
-					html+="<td>"+p[o]+"</td>"
+					if(o=="score"){
+						html+="<td><span class='badge text-bg-primary'>"+p[o]+"</span></td>"
+					}else{
+						html+="<td>"+p[o]+"</td>"
+					}
 				}
 				html+="</tr>"
 				options.innerHTML=html

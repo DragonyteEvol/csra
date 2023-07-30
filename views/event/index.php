@@ -33,6 +33,7 @@ include_once("components/header.php");
 				<th scope="col">#</th>
 				<th scope="col">Evento</th>
 				<th scope="col">Tipo</th>
+				<th scope="col">Puntaje</th>
 			</tr>
 		</thead>
 		<tbody id="events">
@@ -44,8 +45,12 @@ include_once("components/header.php");
 						<?= $risk["event"] ?>
 					</a>
 				</td>
-				<td><?= $risk["propertie"] ?></td>
 				<td><?= $risk["type"] ?></td>
+				<td>
+					<span class="badge text-bg-primary">
+						<?= $risk["score"] ?>
+					</span>
+				</td>
 			</tr>
 			<?php  endforeach; ?>
 		</tbody>
@@ -142,6 +147,7 @@ include_once("components/header.php");
 		search: "event",
 		components: [
 			"type",
+			"score"
 		],
 		value: "event",
 		table: "events",
