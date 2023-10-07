@@ -9,13 +9,22 @@ class EventController extends Controller{
 		$this->model = new EventModel();
 	}
 
-	public function show(){
-		$numbers = [0,1,2,3,4,5,6,7,8,9];
-		$syntax = "(22+3)+(4*825)";
-		$z=4;
-		if(is_numeric($syntax[$z])){
-			echo $syntax[$z];
+	public function sophos(){
+		$array_number = array();
+		$syntax = '(22+3)+(4*825)';
+		$number = "";
+		for($i=0;$i<strlen($syntax);$i++){
+			if(is_numeric($syntax[$i])){
+				$number = $number . $syntax[$i];
+			}else{
+				if($number!=""){
+					array_push($array_number,$number);
+					$number = "";
+				}	
+			}
 		}
+		eval("\$var = $syntax;");
+		echo($var);
 	}
 
 }
