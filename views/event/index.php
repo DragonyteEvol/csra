@@ -39,9 +39,9 @@ include_once("components/header.php");
 		<tbody id="events">
 			<?php  foreach($data["events"] as $risk): ?>
 			<tr>
-				<th scope="row"><?= $risk["id_master"] ?></th>
+				<th scope="row"><?= $risk["master_id"] ?></th>
 				<td>
-					<a class="link-dark" href="/event/show/<?= $risk['id_master'] ?>">
+					<a class="link-dark" href="/event/show/<?= $risk['master_id'] ?>">
 						<?= $risk["event"] ?>
 					</a>
 				</td>

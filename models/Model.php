@@ -71,7 +71,6 @@ class Model{
 				$sql = $sql . "INNER JOIN $join_table ON $table_relation.$column_1=$join_table.id ";
 				$sql = $sql . "WHERE $this->table.id=:id";
 				$this->execute($sql,$join_table,$id);
-				$sql = str_replace("WHERE $this->table.id=:id","",$sql);
 			}
 		}
 		return $this->data;

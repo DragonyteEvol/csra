@@ -51,6 +51,7 @@ function axios_get(args,options,search=""){
 		method: "GET",
 		url: "/"+args.search+"/search/" + (search.replace(" ","_"))
 	}).then(res =>{
+		console.log(res.data)
 		options.innerHTML = ""
 		select_options = ""
 		for(var p of res.data[args.table]){
@@ -66,7 +67,6 @@ function axios_get(args,options,search=""){
 				select_options += pa[0] + ": "+ '"'+p[val]+'",'
 			}
 			select_options += "})'>"+p[internalValue]+"</"+args.tag+">"
-			console.log(select_options)
 		}
 		options.innerHTML = select_options
 	}).catch(e => {
@@ -106,11 +106,10 @@ function searchTable(args){
 			method: "GET",
 			url: "/"+args.search+"/search/" + (search.replace(" ","_"))
 		}).then(res =>{
-			console.log(res)
 			var html = ""
 			for(var p of res.data[args.table]){
-				html+="<tr><th scope='row'>"+p.id_master+"</th>"
-				html+="<td><a href='/"+args.value+"/show/"+p.id_master+"'>"+p[args.value]+"</a></td>"
+				html+="<tr><th scope='row'>"+p.master_id+"</th>"
+				html+="<td><a href='/"+args.value+"/show/"+p.master_id+"'>"+p[args.value]+"</a></td>"
 				for(o of args.components){
 					if(o=="score"){
 						html+="<td><span class='badge text-bg-primary'>"+p[o]+"</span></td>"

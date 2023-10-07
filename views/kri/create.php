@@ -133,7 +133,7 @@ include_once("components/header.php");
 		listOptions: "datalistOptionsEvent",
 		search: "event",
 		components: new Map([
-			["id","id"],
+			["id","master_id"],
 			["event","event"]
 		]),
 		value: "event",
