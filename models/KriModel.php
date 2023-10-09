@@ -1,4 +1,5 @@
 <?php 
+require_once("models/EventModel.php");
 class KriModel extends Model{
 	protected $table = "kris";
 	protected $columns = ["kri","objective","propertie_id","percentage","syntax"];
@@ -10,5 +11,6 @@ class KriModel extends Model{
 	public function __construct(){
 		parent::__construct();
 	}
+
 }
 ?>

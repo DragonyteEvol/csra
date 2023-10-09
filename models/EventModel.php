@@ -10,10 +10,68 @@ class EventModel extends Model{
 		parent::__construct();
 	}
 
+	/* Consulta todos los elementos del modelo en base en datos */
+	/* retorna un array con los elementos consultados */
 	public function getAll(){
 		//optencion de query
 		$sql = $this->getSelectQuery(TRUE);
 		/* ejecucion de query */
+		$this->execute($sql,$this->table);
+		return $this->data;
+	}
+
+	/* Calcula el valor de un ecuacion relacionando los numeros a id de eventos y consultando su repeticion de aparicion en OSIEM en un tiempo determinado */
+	/* recibe como entrada una ecuacion en formato string */
+	/* retorna un numero con el valor de la ecuacion en un tiempo determinado */
+	public function calculateScore($syntax){
+		/* generar array de numeros */
+		$array_events= $this->extractNumberEvents($syntax);
+		/* consultar eventos y aparicion */
+		foreach($array_events as $event_id){
+			$events = $this->selectById($event_id);
+			foreach($events["events"] as $event){
+				$score = $event["score"];
+				$syntax = str_replace($event_id,$score,$syntax);
+			}
+		}
+		/* evaluar ecuacion */
+		/* !!!!!!IMPORTANTE!!!!!!!!! */
+		/* Aplicar tecnicas de sanitizacion debido a que la funcion eval puede ser muy peligrosa y poner en riesgo la informacion */
+		eval("\$score = $syntax;");
+		return $score;
+	}
+
+	/* extrae el numero de evento de evento a partir de un ecuacion */
+	/* recibe como entrada una ecuacion en formato string */
+	/* ej. (25-56)/24 => Array(25,56,24) */
+	/* retorna un array con los eventos identificados */
+	private function extractNumberEvents($syntax){
+		$array_number = array();
+		$number = "";
+		for($i=0;$i<strlen($syntax);$i++){
+			if(is_numeric($syntax[$i])){
+				$number = $number . $syntax[$i];
+			}else{
+				if($number!=""){
+					array_push($array_number,$number);
+					$number = "";
+				}	
+			}
+		}
+		if($number!=""){
+			array_push($array_number,$number);
+		}	
+		return $array_number;
+	}
+
+	
+	/* busca elementos en la base de datos */
+	/* 	retorna un array con los elementos encontrados */
+	public function selectById($id){
+		$sql = $this->getSelectQuery(FALSE);
+		$sql=$sql . " WHERE $this->table.id='$id' ";
+		//AGRUPACION POR ID DE OSIEM Y FUENTE PARA EVITAR CRUCES DE EVENTOS
+		$sql = $sql . "GROUP BY $this->table.id,$this->table.event_id,$this->table.source_id";
 		$this->execute($sql,$this->table);
 		return $this->data;
 	}
