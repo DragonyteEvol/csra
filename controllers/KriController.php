@@ -29,11 +29,7 @@ class KriController extends Controller{
 	/* returna una vista con la informacion del kri y su puntaje*/
 	public function show(){
 		$id = $_GET["id"]; 
-		$data=$this->model->selectById($id);
-		/* CALCULAR PUNTAJE DE KRI */
-		$syntax = $data["kris"][0]["syntax"];
-		$score = $this->event_model->calculateScore($syntax);
-		$data["score"] = $score;
+		$data = $this->model->getByIdScore($id);
 		/* VISTA */
 		require_once("views/$this->controller/show.php");
 	}

@@ -12,7 +12,6 @@ class Model{
 	/* 	retorna la informacion consultada o registrada */
 	public function getCustom($sql,$param=0){
 		$this->execute($sql,$this->table,$param);
-		return $this->data;
 	}
 
 	/* toma todos los usuarios de la base de datos */

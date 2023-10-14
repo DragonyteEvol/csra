@@ -8,6 +8,14 @@ class QualifierModel extends Model{
 		parent::__construct();
 	}
 
+	public function getQualifierScore($kri_id,$score){
+		$sql = "SELECT * FROM $this->table WHERE kri_id=$kri_id AND value >=$score ORDER BY value LIMIT 1";
+	 	$this->getCustom($sql,"score_qualified");
+		$type = ($this->data["qualifiers"][0]["type"]);
+		$value = ($this->data["qualifiers"][0]["value"]);
+		return ["type"=>$type,"value"=>$value];
+	}
+
 	public function insertQualifiers($id,$db){
 		$this->db = $db;
 		$this->kri_id=$id;

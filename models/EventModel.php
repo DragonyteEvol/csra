@@ -23,7 +23,7 @@ class EventModel extends Model{
 	/* Calcula el valor de un ecuacion relacionando los numeros a id de eventos y consultando su repeticion de aparicion en OSIEM en un tiempo determinado */
 	/* recibe como entrada una ecuacion en formato string */
 	/* retorna un numero con el valor de la ecuacion en un tiempo determinado */
-	public function calculateScore($syntax){
+	public function getScore($syntax){
 		/* generar array de numeros */
 		$array_events= $this->extractNumberEvents($syntax);
 		/* consultar eventos y aparicion */
