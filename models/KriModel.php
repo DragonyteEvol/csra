@@ -27,13 +27,14 @@ class KriModel extends Model{
 	}
 
 	/* calcula el puntaje ponderado y calificado de un kri */
-	/* adjunta los resultados al array principal del modelo */
+	/* adjunta los resultados al array principal del modelo retorna el valor cualificado*/
 	/* requiere como datos de entrada un id de kri y una syntax o ecuacion ejemplo 2+4 */
 	public function getScore($id,$syntax){
 		/* puntaje calculado por ecuacion */
 		$this->data["score"] = $this->event_model->getScore($syntax);
 		/* puntaje ponderado por calificadores */
 		$this->data["score_qualified"]=$this->qualifier_model->getQualifierScore($id,$this->data["score"]);
+		return $this->data["score_qualified"];
 	}
 
 }

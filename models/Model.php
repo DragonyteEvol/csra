@@ -66,10 +66,11 @@ class Model{
 				$column_1 = $relation . "_id";
 				$column_2 = substr($join,0,-1) . "_id";
 				$join_table = $this->much_to_much[$join];
-				$sql = $sql . "INNER JOIN $table_relation ON $join.id=$table_relation.$column_2 ";
-				$sql = $sql . "INNER JOIN $join_table ON $table_relation.$column_1=$join_table.id ";
+				$sql = $sql . " INNER JOIN $table_relation ON $join.id=$table_relation.$column_2 ";
+				$sql = $sql . " INNER JOIN $join_table ON $table_relation.$column_1=$join_table.id ";
 				$sql = $sql . "WHERE $this->table.id=:id";
 				$this->execute($sql,$join_table,$id);
+				$sql = str_replace("WHERE $this->table.id=:id","",$sql);
 			}
 		}
 		return $this->data;

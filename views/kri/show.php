@@ -4,7 +4,6 @@ include_once("components/header.php");
 
 <!-- FORMULARIO DE CREACION DE KRIS -->
 <div class="container">
-	
 	<form action="/kri/update" method="POST" class="needs-validation">
 			<?php  foreach($data["kris"] as $kri): ?>
 			<!-- PRIMERA FILA -->
