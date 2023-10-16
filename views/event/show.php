@@ -3,7 +3,7 @@ include_once("components/header.php");
 ?>
 <!-- FORMULARIO DE CREACION DE eventS -->
 <div class="container">
-	<form action="//update" method="POST" class="needs-validation">
+	<form action="/event/update/27" method="POST" class="needs-validation">
 		<div class="card my-5">
 			<?php  foreach($data["events"] as $event): ?>
 			<div class="card-header">
@@ -19,10 +19,9 @@ include_once("components/header.php");
 					<div class="col-4">
 						<!-- TIPO -->
 						<div class="form-floating mb-3">
-							<select name="propertie_id" class="form-select" id="datalistOptions" aria-label="">
-								<option value="<?= $event['type_id'] ?>" selected><?= $event['type']?></option>
-								<option value="1">automatic</option>
-								<option value="2">manual</option>
+							<select name="type" class="form-select" id="datalistOptions" aria-label="">
+								<option value="automatic">automatic</option>
+								<option value="manual">manual</option>
 							</select>
 							<label for="floatingSelect">Tipo de evento</label>
 						</div>
@@ -30,14 +29,14 @@ include_once("components/header.php");
 					<div class="col-4">
 						<!-- FUENTE ID OSIEM -->
 						<div class="form-floating mb-3">
-							<input name="percentage" type="number" value="<?= $event['source_id'] ?>" class="form-control">
+							<input name="source_id" type="number" value="<?= $event['source_id'] ?>" class="form-control">
 							<label for="floatingInput">Fuente OSIEM</label>
 						</div>
 					</div>
 					<div class="col-4">
 						<!-- EVENT ID-->
 						<div class="form-floating mb-3">
-							<input name="percentage" type="number" value="<?= $event['event_id'] ?>" class="form-control">
+							<input name="event_id" type="number" value="<?= $event['event_id'] ?>" class="form-control">
 							<label for="floatingInput">Evento OSIEM</label>
 						</div>
 					</div>

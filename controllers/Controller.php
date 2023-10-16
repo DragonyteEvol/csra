@@ -40,10 +40,13 @@ class Controller{
 
 	/* modifica un elemento y redirecciona al inicio */
 	public function update(){
-		$this->model->id = $_GET["id"];
+		$id = $_GET["id"];
 		$this->modelParams();
-		$this->model->update();
-		header("Location: /$this->controller");
+		$this->model->update($id);
+		if($this->autosave){
+			$this->model->saveChanges();
+			header("Location: /$this->controller");
+		}
 	}
 
 	/* borra un elemento y redireccion al inicio */

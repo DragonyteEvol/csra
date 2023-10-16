@@ -115,7 +115,7 @@ class Model{
 
 	/* modifica un elemento en la base de datos */
 	/* 	retorna el ultimo in elemento de la tabla */
-	public function update(){
+	public function update($id){
 		try{
 			if(!$this->db->inTransaction()){
 				$this->db->beginTransaction();
@@ -130,11 +130,11 @@ class Model{
 			}
 			$sql = "UPDATE $this->table set $prepare_sql WHERE id=:id";
 			$state = $this->db->prepare($sql);
-			$this->setParams($state);
-			$state->bindParam(":id",$this->id);
+			$state = $this->setParams($state);
+			$state->bindParam(":id",$id);
 			$state->execute();
-			return $this->db->lastInsertId();
 		}catch(PDOException $e){
+			var_dump($e);
 			$this->db->rollBack();
 		}
 	}
@@ -188,6 +188,7 @@ class Model{
 				$state->bindParam($this->args[$i],$this->{$this->columns[$i]});
 			}
 		}
+		return $state;
 	}
 
 	/* ejecuta la consulta preparada */
