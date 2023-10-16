@@ -7,7 +7,7 @@ include_once("components/header.php");
 			<div class="col-6">
 				<div class="row">
 					<div class="input-group mb-3">
-						<a href="/kri/create" class="btn btn-primary" type="button" id="button-addon1">+</a>
+						<a href="/risk/create" class="btn btn-primary" type="button" id="button-addon1">+</a>
 						<input id="search" type="text" class="form-control" placeholder="Buscar riesgo" aria-label="Example text with button addon" aria-describedby="button-addon1">
 					</div>
 				</div>
