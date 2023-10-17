@@ -1,8 +1,5 @@
 <?php 
 class EventModel extends Model{
-
-	public $autosave = true;
-
 	protected $table = "events";
 	protected $columns = ["event","type","source_id","event_id"];
 	protected $args= [":event",":type",":source_id",":event_id"];

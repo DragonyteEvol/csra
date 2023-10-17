@@ -8,6 +8,7 @@ class KriModel extends Model{
 	protected $one_to_one= ["kris"=>"properties"];
 	protected $one_to_much= ["kris"=>"qualifiers"];
 	protected $much_to_much= ["kris"=>"events"];
+	protected $table_relations = ["qualifiers"=>["type","value"],"events"];
 
 	public function __construct(){
 		parent::__construct();

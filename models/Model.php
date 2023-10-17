@@ -114,6 +114,7 @@ class Model{
 	}
 
 	/* modifica un elemento en la base de datos */
+	/* recibe el id del elemento a modificar */
 	/* 	retorna el ultimo in elemento de la tabla */
 	public function update($id){
 		try{
@@ -133,6 +134,7 @@ class Model{
 			$state = $this->setParams($state);
 			$state->bindParam(":id",$id);
 			$state->execute();
+			$this->refreshDataRelations($id,$this->much_to_much);
 		}catch(PDOException $e){
 			var_dump($e);
 			$this->db->rollBack();
@@ -179,7 +181,7 @@ class Model{
 
 	/* establece las variables de las consultas preparadas */
 	/* 	no retorna informacion pero deja la consulta preparada lista para su ejecucion */
-	private function setParams($state){
+	public function setParams($state){
 		for($i=0;$i < count($this->args);$i++){
 			if($this->args[$i]==":password"){
 				$password = password_hash($this->password,PASSWORD_BCRYPT);
@@ -205,6 +207,32 @@ class Model{
 			$this->data[$key]=$this->process_data;
 			$this->process_data=[];
 		}
+	}
+
+	//BORRA Y RECREA LAS RELACIONES MUCHOS A MUCHOS DE UNA TABLA RELACION
+	//recibe un id de referencia generalemente el id de el elemento de la tabla principal, y las un diccionario de tabla relacion
+	//no retorna informacion
+	public function refreshDataRelations($id_reference,$relations){
+		foreach(array_keys($relations) as $join){
+			$relation= substr($relations[$join],0,-1);//event
+			$table_relation = substr($join,0,-1) . "_" . $relation;//kri_event
+			$column_2 = substr($join,0,-1) . "_id";//kri_id
+			$column_1 = $relation . "_id";//event_id
+			//BORRA LAS DEPENDECIAS O RELACIONES ANTERIORES
+			$sql = "DELETE FROM $table_relation WHERE $column_2=:id";
+			$state = $this->db->prepare($sql);
+			$state->bindParam(":id",$id_reference);
+			$state->execute();
+			//RECREA LAS DEPENEDENCIAS O RELACIONES
+			$sql = "INSERT INTO $table_relation($column_1,$column_2) VALUES(:$column_1,:$column_2)";
+			for($i=0;$i< count($_POST[$relation]);$i++){
+				$state = $this->db->prepare($sql);
+				$state->bindParam(":$column_1",$_POST[$relation][$i]);
+				$state->bindParam(":$column_2",$id_reference);
+				$state->execute();
+			}
+		}
+
 	}
 }
 ?>

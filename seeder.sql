@@ -30,7 +30,7 @@ CREATE TABLE `events` (
   `event_id` int(11) DEFAULT NULL,
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=30 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -39,7 +39,7 @@ CREATE TABLE `events` (
 
 LOCK TABLES `events` WRITE;
 /*!40000 ALTER TABLE `events` DISABLE KEYS */;
-INSERT INTO `events` VALUES (1,'Escaneo de puertos','automatic',NULL,NULL,'2023-03-30 18:07:33'),(2,'Inundacin de paquetes (synFlood)','automatic',NULL,NULL,'2023-03-30 18:07:33'),(3,'Ataque de fuerza bruta','automatic',NULL,NULL,'2023-03-30 18:07:33'),(4,'Deteccin de malware en estacin de trabajo','automatic',NULL,NULL,'2023-03-30 18:07:33'),(5,'Deteccin de trfico malicioso','automatic',NULL,NULL,'2023-03-30 18:07:33'),(6,'PUA detectada','automatic',NULL,NULL,'2023-03-30 18:07:33'),(7,'PUA limpiada','automatic',NULL,NULL,'2023-03-30 18:07:33'),(8,'Proteccin en tiempo real desactivado','automatic',NULL,NULL,'2023-03-30 18:07:33'),(9,'Deteccin de datos personales','automatic',NULL,NULL,'2023-03-30 18:07:33'),(10,'Correos a buzones personales con informacin restringida','automatic',NULL,NULL,'2023-03-30 18:07:33'),(11,'Compartir informacin restringida en onedrive con usuarios externos','automatic',NULL,NULL,'2023-03-30 18:07:33'),(12,'Deteccin de archivos malilciosos - malware','automatic',NULL,NULL,'2023-03-30 18:07:33'),(13,'Privilegios especiales asignados al nuevo inicio de sesin','automatic',NULL,NULL,'2023-03-30 18:07:33'),(14,'Creacin o desactivacin de usuarios fuera de horario laboral','automatic',NULL,NULL,'2023-03-30 18:07:33'),(15,'Vulnerabilidades detectadas','automatic',NULL,NULL,'2023-03-30 18:07:33'),(16,'Prdida/robo de porttiles','automatic',NULL,NULL,'2023-03-30 18:07:34'),(19,'Malware encontrado','automatic',1861,5,'2023-04-05 10:50:56'),(20,'Display bloqueado','automatic',1738,3,'2023-04-06 12:43:32'),(24,'TEST','automatic',121,1212,'2023-04-17 10:48:05'),(27,'Pedro','automatic',56456,46,'2023-05-13 18:40:43');
+INSERT INTO `events` VALUES (1,'Escaneo de puertos','automatic',NULL,NULL,'2023-03-30 18:07:33'),(2,'Inundacin de paquetes (synFlood)','automatic',NULL,NULL,'2023-03-30 18:07:33'),(3,'Ataque de fuerza bruta','automatic',NULL,NULL,'2023-03-30 18:07:33'),(4,'Deteccin de malware en estacin de trabajo','automatic',NULL,NULL,'2023-03-30 18:07:33'),(5,'Deteccin de trfico malicioso','automatic',NULL,NULL,'2023-03-30 18:07:33'),(6,'PUA detectada','automatic',NULL,NULL,'2023-03-30 18:07:33'),(7,'PUA limpiada','automatic',NULL,NULL,'2023-03-30 18:07:33'),(8,'Proteccin en tiempo real desactivado','automatic',NULL,NULL,'2023-03-30 18:07:33'),(9,'Deteccin de datos personales','automatic',NULL,NULL,'2023-03-30 18:07:33'),(10,'Correos a buzones personales con informacin restringida','automatic',NULL,NULL,'2023-03-30 18:07:33'),(11,'Compartir informacin restringida en onedrive con usuarios externos','automatic',NULL,NULL,'2023-03-30 18:07:33'),(12,'Deteccin de archivos malilciosos - malware','automatic',NULL,NULL,'2023-03-30 18:07:33'),(13,'Privilegios especiales asignados al nuevo inicio de sesin','automatic',NULL,NULL,'2023-03-30 18:07:33'),(14,'Creacin o desactivacin de usuarios fuera de horario laboral','automatic',NULL,NULL,'2023-03-30 18:07:33'),(15,'Vulnerabilidades detectadas','automatic',NULL,NULL,'2023-03-30 18:07:33'),(16,'Prdida/robo de porttiles','automatic',NULL,NULL,'2023-03-30 18:07:34'),(19,'Malware encontrado','automatic',1861,5,'2023-04-05 10:50:56'),(20,'Display bloqueado','automatic',1738,3,'2023-04-06 12:43:32'),(24,'TEST','automatic',121,1212,'2023-04-17 10:48:05'),(27,'test4','automatic',121,1212,'2023-05-13 18:40:43'),(28,'Test1','automatic',123,123,'2023-10-07 17:27:53'),(29,'Test2','automatic',321,321,'2023-10-07 17:28:10');
 /*!40000 ALTER TABLE `events` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -56,7 +56,7 @@ CREATE TABLE `kri_event` (
   `event_id` int(11) DEFAULT NULL,
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -65,7 +65,7 @@ CREATE TABLE `kri_event` (
 
 LOCK TABLES `kri_event` WRITE;
 /*!40000 ALTER TABLE `kri_event` DISABLE KEYS */;
-INSERT INTO `kri_event` VALUES (10,6,9,'2023-05-14 13:11:41'),(11,6,12,'2023-05-14 13:11:41');
+INSERT INTO `kri_event` VALUES (10,6,9,'2023-05-14 13:11:41'),(11,6,12,'2023-05-14 13:11:41'),(14,7,28,'2023-10-07 18:04:36'),(15,7,29,'2023-10-07 18:04:36'),(16,8,1,'2023-10-15 20:29:47'),(17,8,28,'2023-10-15 20:29:47'),(18,9,1,'2023-10-16 23:11:24');
 /*!40000 ALTER TABLE `kri_event` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -85,7 +85,7 @@ CREATE TABLE `kris` (
   `syntax` varchar(255) DEFAULT NULL,
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -94,7 +94,7 @@ CREATE TABLE `kris` (
 
 LOCK TABLES `kris` WRITE;
 /*!40000 ALTER TABLE `kris` DISABLE KEYS */;
-INSERT INTO `kris` VALUES (6,'Deteccion de archivos','Detectar archivos maliciosos y compararlos con los archivos privados de los usuarios de sophos',1,20,'9-12','2023-05-14 13:11:41');
+INSERT INTO `kris` VALUES (6,'Deteccion de archivos','Detectar archivos maliciosos y compararlos con los archivos privados de los usuarios de sophos',2,20,'9-12','2023-05-14 13:11:41'),(7,'Kri Test Vulnerabilidad Calculada','Determinar logica necesaria para calculo de kris a partir de la ecuacion dada por el usuario',1,20,'28+29','2023-10-07 17:33:48'),(8,' 	Kri Test Vulnerabilidad Calculada 2','Determinar logica necesaria para calculo de kris a partir de la ecuacion dada por el usuario',1,80,'28-1','2023-10-15 20:29:47'),(9,'Sophos 3','Quieres que te guise un chicharron',1,20,'1','2023-10-16 23:11:24');
 /*!40000 ALTER TABLE `kris` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -163,7 +163,7 @@ CREATE TABLE `qualifiers` (
   `kri_id` int(11) DEFAULT NULL,
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -172,7 +172,7 @@ CREATE TABLE `qualifiers` (
 
 LOCK TABLES `qualifiers` WRITE;
 /*!40000 ALTER TABLE `qualifiers` DISABLE KEYS */;
-INSERT INTO `qualifiers` VALUES (11,'Bajo',1,6,'2023-05-14 13:11:41'),(12,'Medio',3,6,'2023-05-14 13:11:41'),(13,'Alto',5,6,'2023-05-14 13:11:41'),(14,'Extremo',7,6,'2023-05-14 13:11:41');
+INSERT INTO `qualifiers` VALUES (11,'Bajo',1,6,'2023-05-14 13:11:41'),(12,'Medio',3,6,'2023-05-14 13:11:41'),(13,'Alto',5,6,'2023-05-14 13:11:41'),(14,'Extremo',7,6,'2023-05-14 13:11:41'),(15,'Alto',50,7,'2023-10-07 17:33:48'),(16,'Medio',12,7,'2023-10-07 17:33:48'),(17,'Bajo',5,7,'2023-10-07 17:33:48'),(18,'Bajo',5,8,'2023-10-15 20:29:47'),(19,'Medio',4,8,'2023-10-15 20:29:47'),(20,'Alto',10,8,'2023-10-15 20:29:47'),(21,'Alto',50,9,'2023-10-16 23:11:24'),(22,'Media',20,9,'2023-10-16 23:11:24'),(23,'Bajo',5,9,'2023-10-16 23:11:24');
 /*!40000 ALTER TABLE `qualifiers` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -190,7 +190,7 @@ CREATE TABLE `records` (
   `reported_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=38 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -199,7 +199,7 @@ CREATE TABLE `records` (
 
 LOCK TABLES `records` WRITE;
 /*!40000 ALTER TABLE `records` DISABLE KEYS */;
-INSERT INTO `records` VALUES (1,1861,5,'2023-01-21 12:00:00','2023-05-14 14:38:08'),(2,1861,5,'2023-01-21 12:00:00','2023-05-14 14:42:31'),(3,1738,3,'2023-01-23 13:00:00','2023-05-14 14:42:31'),(4,1861,5,'2023-01-21 12:00:00','2023-05-14 14:42:34'),(5,1738,3,'2023-01-23 13:00:00','2023-05-14 14:42:34'),(6,1861,5,'2023-01-21 12:00:00','2023-05-14 14:42:35'),(7,1738,3,'2023-01-23 13:00:00','2023-05-14 14:42:35'),(8,1861,5,'2023-01-21 12:00:00','2023-05-14 14:42:36'),(9,1738,3,'2023-01-23 13:00:00','2023-05-14 14:42:36'),(10,1861,5,'2023-01-21 12:00:00','2023-05-14 14:42:44'),(11,121,1212,'2023-01-21 12:00:00','2023-05-14 14:43:24'),(12,121,1212,'2023-01-21 12:00:00','2023-05-14 14:43:25'),(13,121,1212,'2023-01-21 12:00:00','2023-05-14 14:43:26'),(14,121,1212,'2023-01-21 12:00:00','2023-05-14 14:43:26'),(15,121,1212,'2023-01-21 12:00:00','2023-05-14 14:43:27'),(16,56456,46,'2023-01-21 12:00:00','2023-05-14 14:43:46'),(17,56456,46,'2023-01-21 12:00:00','2023-05-14 14:43:47'),(18,56456,46,'2023-01-21 12:00:00','2023-05-14 14:43:47'),(19,56456,46,'2023-01-21 12:00:00','2023-05-14 14:43:48'),(20,56456,46,'2023-01-21 12:00:00','2023-05-14 14:43:48'),(21,56456,466,'2023-01-21 12:00:00','2023-05-14 14:45:50');
+INSERT INTO `records` VALUES (1,1861,5,'2023-01-21 12:00:00','2023-05-14 14:38:08'),(2,1861,5,'2023-01-21 12:00:00','2023-05-14 14:42:31'),(3,1738,3,'2023-01-23 13:00:00','2023-05-14 14:42:31'),(4,1861,5,'2023-01-21 12:00:00','2023-05-14 14:42:34'),(5,1738,3,'2023-01-23 13:00:00','2023-05-14 14:42:34'),(6,1861,5,'2023-01-21 12:00:00','2023-05-14 14:42:35'),(7,1738,3,'2023-01-23 13:00:00','2023-05-14 14:42:35'),(8,1861,5,'2023-01-21 12:00:00','2023-05-14 14:42:36'),(9,1738,3,'2023-01-23 13:00:00','2023-05-14 14:42:36'),(10,1861,5,'2023-01-21 12:00:00','2023-05-14 14:42:44'),(11,121,1212,'2023-01-21 12:00:00','2023-05-14 14:43:24'),(12,121,1212,'2023-01-21 12:00:00','2023-05-14 14:43:25'),(13,121,1212,'2023-01-21 12:00:00','2023-05-14 14:43:26'),(14,121,1212,'2023-01-21 12:00:00','2023-05-14 14:43:26'),(15,121,1212,'2023-01-21 12:00:00','2023-05-14 14:43:27'),(16,56456,46,'2023-01-21 12:00:00','2023-05-14 14:43:46'),(17,56456,46,'2023-01-21 12:00:00','2023-05-14 14:43:47'),(18,56456,46,'2023-01-21 12:00:00','2023-05-14 14:43:47'),(19,56456,46,'2023-01-21 12:00:00','2023-05-14 14:43:48'),(20,56456,46,'2023-01-21 12:00:00','2023-05-14 14:43:48'),(21,56456,466,'2023-01-21 12:00:00','2023-05-14 14:45:50'),(22,123,123,'2023-10-08 00:00:00','2023-10-07 17:31:17'),(23,123,123,'2023-10-08 00:00:00','2023-10-07 17:31:22'),(24,123,123,'2023-10-08 00:00:00','2023-10-07 17:31:32'),(25,123,123,'2023-10-08 00:00:00','2023-10-07 17:31:33'),(26,321,321,'2023-10-08 00:00:00','2023-10-07 17:31:50'),(27,321,321,'2023-10-08 00:00:00','2023-10-07 17:31:51'),(28,321,321,'2023-10-08 00:00:00','2023-10-07 17:31:51'),(29,321,321,'2023-10-08 00:00:00','2023-10-07 17:31:52'),(30,321,321,'2023-10-08 00:00:00','2023-10-07 17:31:52'),(31,321,321,'2023-10-08 00:00:00','2023-10-07 17:31:53'),(32,321,321,'2023-10-08 00:00:00','2023-10-07 17:31:53'),(33,321,321,'2023-10-08 00:00:00','2023-10-07 17:31:54'),(34,321,321,'2023-10-08 00:00:00','2023-10-07 17:31:54'),(35,321,321,'2023-10-08 00:00:00','2023-10-07 17:31:55'),(36,321,321,'2023-10-08 00:00:00','2023-10-07 17:31:55'),(37,321,321,'2023-10-08 00:00:00','2023-10-07 17:31:56');
 /*!40000 ALTER TABLE `records` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -216,7 +216,7 @@ CREATE TABLE `risk_kri` (
   `kri_id` int(11) DEFAULT NULL,
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -225,7 +225,7 @@ CREATE TABLE `risk_kri` (
 
 LOCK TABLES `risk_kri` WRITE;
 /*!40000 ALTER TABLE `risk_kri` DISABLE KEYS */;
-INSERT INTO `risk_kri` VALUES (1,1,1,'2023-03-30 19:34:49'),(2,1,2,'2023-03-30 19:34:49');
+INSERT INTO `risk_kri` VALUES (1,1,7,'2023-03-30 19:34:49'),(2,1,6,'2023-03-30 19:34:49'),(5,25,7,'2023-10-15 22:18:28'),(6,25,8,'2023-10-15 22:18:28');
 /*!40000 ALTER TABLE `risk_kri` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -243,7 +243,7 @@ CREATE TABLE `risks` (
   `risk` varchar(255) DEFAULT NULL,
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -252,7 +252,7 @@ CREATE TABLE `risks` (
 
 LOCK TABLES `risks` WRITE;
 /*!40000 ALTER TABLE `risks` DISABLE KEYS */;
-INSERT INTO `risks` VALUES (1,3,3,'Prdida financiera causada por Acceso no autorizado','2023-03-30 18:06:22'),(2,3,2,'Sancin legal causada por Fuga de informacin malintencionada','2023-03-30 18:06:22'),(3,3,3,'Prdida financiera causada por Fuga de informacin por error involuntario','2023-03-30 18:06:22'),(4,2,1,'Prdida operativa causada por Ingeniera social/Spear Phising, Cryptojacking/Cryptomining, Cloud-Jacking, Ramsonware, Cyber espionaje, IoT, Hacktivism, Crimen organizado, Fearware, Coordinated attack, Cyber warfare','2023-03-30 18:06:22'),(5,4,1,'Prdida operativa causada por Ataque Fuerza bruta, Desbordamiento buffer, XSS, MiM, Spoof, Inyeccion SQL','2023-03-30 18:06:22'),(6,4,1,'Perdida de capacidad tecnolgica causada por Suplantacin de identidad','2023-03-30 18:06:22'),(7,5,1,'Perdida de capacidad tecnolgica causada por Abuso o elevacin de privilegios','2023-03-30 18:06:22'),(8,5,3,'Prdida financiera causada por Modificacin de la informacin por error involuntario','2023-03-30 18:06:22'),(9,1,3,'Sancin legal causada por Modificacin de la informacin malintencionada','2023-03-30 18:06:22'),(10,4,2,'Prdida financiera causada por Robo','2023-03-30 18:06:22'),(11,2,1,'Prdida operativa causada por Ataque informtico (Malware, APT, BackDoor, DoS)','2023-03-30 18:06:22'),(12,3,2,'Prdida operativa causada por Corte o fallas en el suministro elctrico','2023-03-30 18:06:22'),(13,4,1,'Prdida operativa causada por Dao por agua, humedad o lquidos','2023-03-30 18:06:22'),(14,3,2,'Perdida de capacidad tecnolgica causada por Denegacin de servicio malintencionado','2023-03-30 18:06:22'),(15,2,2,'Perdida de capacidad tecnolgica causada por Denegacin de servicio por error involuntario','2023-03-30 18:06:22'),(16,2,3,'Prdida operativa causada por Descarga elctrica','2023-03-30 18:06:22'),(17,3,2,'Prdida estratgica causada por Destruccin de la informacin por error involuntario','2023-03-30 18:06:22'),(18,2,2,'Prdida financiera causada por Destruccin o eliminacin de la informacin malintencionada','2023-03-30 18:06:22'),(19,4,2,'Prdida financiera causada por Fuego','2023-03-30 18:06:22'),(20,3,1,'Prdida operativa causada por Interferencia electromagntica','2023-03-30 18:06:22'),(21,3,3,'Prdida operativa causada por Paro','2023-03-30 18:06:23'),(22,2,1,'Prdida operativa causada por Pandemias (Covid-19, emergentes)','2023-03-30 18:06:23'),(23,4,1,'Prdida operativa causada por Terremoto','2023-03-30 18:06:24');
+INSERT INTO `risks` VALUES (1,3,3,'Prdida financiera causada por Acceso no autorizado','2023-03-30 18:06:22'),(2,3,2,'Sancin legal causada por Fuga de informacin malintencionada','2023-03-30 18:06:22'),(3,3,3,'Prdida financiera causada por Fuga de informacin por error involuntario','2023-03-30 18:06:22'),(4,2,1,'Prdida operativa causada por Ingeniera social/Spear Phising, Cryptojacking/Cryptomining, Cloud-Jacking, Ramsonware, Cyber espionaje, IoT, Hacktivism, Crimen organizado, Fearware, Coordinated attack, Cyber warfare','2023-03-30 18:06:22'),(5,4,1,'Prdida operativa causada por Ataque Fuerza bruta, Desbordamiento buffer, XSS, MiM, Spoof, Inyeccion SQL','2023-03-30 18:06:22'),(6,4,1,'Perdida de capacidad tecnolgica causada por Suplantacin de identidad','2023-03-30 18:06:22'),(7,5,1,'Perdida de capacidad tecnolgica causada por Abuso o elevacin de privilegios','2023-03-30 18:06:22'),(8,5,3,'Prdida financiera causada por Modificacin de la informacin por error involuntario','2023-03-30 18:06:22'),(9,1,3,'Sancin legal causada por Modificacin de la informacin malintencionada','2023-03-30 18:06:22'),(10,4,2,'Prdida financiera causada por Robo','2023-03-30 18:06:22'),(11,2,1,'Prdida operativa causada por Ataque informtico (Malware, APT, BackDoor, DoS)','2023-03-30 18:06:22'),(12,3,2,'Prdida operativa causada por Corte o fallas en el suministro elctrico','2023-03-30 18:06:22'),(13,4,1,'Prdida operativa causada por Dao por agua, humedad o lquidos','2023-03-30 18:06:22'),(14,3,2,'Perdida de capacidad tecnolgica causada por Denegacin de servicio malintencionado','2023-03-30 18:06:22'),(15,2,2,'Perdida de capacidad tecnolgica causada por Denegacin de servicio por error involuntario','2023-03-30 18:06:22'),(16,2,3,'Prdida operativa causada por Descarga elctrica','2023-03-30 18:06:22'),(17,3,2,'Prdida estratgica causada por Destruccin de la informacin por error involuntario','2023-03-30 18:06:22'),(18,2,2,'Prdida financiera causada por Destruccin o eliminacin de la informacin malintencionada','2023-03-30 18:06:22'),(19,4,2,'Prdida financiera causada por Fuego','2023-03-30 18:06:22'),(20,3,1,'Prdida operativa causada por Interferencia electromagntica','2023-03-30 18:06:22'),(21,3,3,'Prdida operativa causada por Paro','2023-03-30 18:06:23'),(22,2,1,'Prdida operativa causada por Pandemias (Covid-19, emergentes)','2023-03-30 18:06:23'),(23,4,1,'Prdida operativa causada por Terremoto','2023-03-30 18:06:24'),(25,1,1,'Perdida Legal Test','2023-10-15 22:18:28');
 /*!40000 ALTER TABLE `risks` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -341,4 +341,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-09-04 10:39:18
+-- Dump completed on 2023-10-17 17:07:18

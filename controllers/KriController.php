@@ -34,5 +34,14 @@ class KriController extends Controller{
 		require_once("views/$this->controller/show.php");
 	}
 
+	public function update(){
+		$id = $_GET["id"];
+		$this->modelParams();
+		$this->model->update($id);
+		$this->qualifier_model->updateQualifiers($id,$this->model->db);
+		$this->model->saveChanges();
+		header("Location: /$this->controller");
+	}
+
 }
 ?>

@@ -4,18 +4,18 @@ include_once("components/header.php");
 
 <!-- FORMULARIO DE CREACION DE KRIS -->
 <div class="container">
-	<form action="/kri/update" method="POST" class="needs-validation">
-			<?php  foreach($data["kris"] as $kri): ?>
-			<!-- PRIMERA FILA -->
-			<div class="row">
-				<div class="col-xl-4 col-lg-6 mb-4">
-					<div class="bg-white rounded-lg p-5 shadow">
-						<h2 class="h6 font-weight-bold text-center mb-4">Valoración del Indicador</h2>
-						<!-- Progress bar 1 -->
-						<div class="progress" role="progressbar" aria-label="Example with label" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
-							<div class="progress-bar" style="width: 25%">Bajo</div>
-						</div>
-						<!-- END -->
+	<?php  foreach($data["kris"] as $kri): ?>
+	<form action="/kri/update/<?= $kri['master_id'] ?>" method="POST" class="needs-validation">
+		<!-- PRIMERA FILA -->
+		<div class="row">
+			<div class="col-xl-4 col-lg-6 mb-4">
+				<div class="bg-white rounded-lg p-5 shadow">
+					<h2 class="h6 font-weight-bold text-center mb-4">Valoración del Indicador</h2>
+					<!-- Progress bar 1 -->
+					<div class="progress" role="progressbar" aria-label="Example with label" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
+						<div class="progress-bar" style="width: 25%">Bajo</div>
+					</div>
+					<!-- END -->
 
 						<!-- Demo info -->
 						<div class="row text-center mt-4">
@@ -116,18 +116,20 @@ include_once("components/header.php");
 							</button>
 						</h2>
 						<div id="qualifier-collapse" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
-							<?php  foreach($data["qualifiers"] as $qualifier): ?>
-							<div class="input-group mb-3">
-								<div class="form-floating">
-									<input type="text" value="<?= $qualifier['type'] ?>" class="form-control" name="qualifiers[]" id="floatingInputGroup1">
-									<label for="floatingInputGroup1">Nombre Calificador</label>
+							<div id="qualifiers">
+								<?php  foreach($data["qualifiers"] as $qualifier): ?>
+								<div class="input-group mb-3">
+									<div class="form-floating">
+										<input type="text" value="<?= $qualifier['type'] ?>" class="form-control" name="qualifier[]" id="floatingInputGroup1">
+										<label for="floatingInputGroup1">Nombre Calificador</label>
+									</div>
+									<div class="form-floating">
+										<input type="text" class="form-control" value="<?= $qualifier['value'] ?>" name="qualifier_value[]" id="floatingInputGroup1">
+										<label for="floatingInputGroup1">Valor</label>
+									</div>
 								</div>
-								<div class="form-floating">
-									<input type="text" class="form-control" value="<?= $qualifier['value'] ?>" name="qualifiers_values[]" id="floatingInputGroup1">
-									<label for="floatingInputGroup1">Valor</label>
-								</div>
+								<?php  endforeach; ?>
 							</div>
-							<?php  endforeach; ?>
 							<button type="button" onclick="addQualifier()" class="form-control btn btn-outline-primary btn-sm">
 								Agregar
 							</button>
@@ -195,6 +197,11 @@ include_once("components/header.php");
 <script src="https://cdn.jsdelivr.net/npm/axios@1.1.2/dist/axios.min.js"></script>
 <script src="/assets/js/search.js"></script>
 <script>
+	function addQualifier(){
+		qualifiers_list = document.getElementById("qualifiers")
+		html = ' <div class="input-group mb-3"> <div class="form-floating"> <input type="text" class="form-control" name="qualifier[]" id="floatingInputGroup1"> <label for="floatingInputGroup1">Nombre Calificador</label> </div> <div class="form-floating"> <input type="text" class="form-control" name="qualifiers_values[]" id="floatingInputGroup1"> <label for="floatingInputGroup1">Valor</label> </div> </div> '
+		qualifiers_list.insertAdjacentHTML("beforeend",html)
+	}
 	searchEvent({
 		listOptions: "datalistOptions",
 		search: "propertie",
