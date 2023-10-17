@@ -2,11 +2,10 @@
 include_once("components/header.php");
 ?>
 <div class="container">
-	
 	<!-- ----------------------------------- -->
+	<?php foreach($data["risks"] as $risk): ?>
 	<div class="card">
-		<form action="/risk/update" method="POST" class="needs-validation">
-			<?php foreach($data["risks"] as $risk): ?>
+		<form action="/risk/update/<?= $risk['master_id'] ?>" method="POST" class="needs-validation">
 			<div class="row">
 				<div class="col-xl-4 col-lg-6 mb-4">
 					<div class="bg-white rounded-lg p-5 shadow">
@@ -70,8 +69,7 @@ include_once("components/header.php");
 					<div class="col-6">
 						<!-- PROPIEDAD -->
 						<div class="form-floating mb-3">
-							<select name="propertie_id" class="form-select" id="datalistOptions" aria-label="">
-								<option value="<?= $risk['propertie_id'] ?>" selected><?= $risk['propertie']?></option>
+							<select name="propertie_id" class="form-select" id="datalistOptionsProperty" aria-label="">
 							</select>
 							<label for="floatingSelect">Propiedad</label>
 						</div>
@@ -79,8 +77,7 @@ include_once("components/header.php");
 					<div class="col-6">
 						<!-- TIPO -->
 						<div class="form-floating mb-3">
-							<select name="propertie_id" class="form-select" id="datalistOptions" aria-label="">
-								<option value="<?= $risk['type_id'] ?>" selected><?= $risk['type']?></option>
+							<select name="type_id" class="form-select" id="datalistOptionsType" aria-label="">
 							</select>
 							<label for="floatingSelect">Tipo</label>
 						</div>
@@ -173,5 +170,27 @@ include_once("components/header.php");
 		tag: "button",
 		customFunction: "customFunction",
 		class: "btn btn-outline-primary form-control m-2' data-bs-dismiss='modal",
+	})
+	//PROPERTIES
+	searchEvent({
+		listOptions: "datalistOptionsProperty",
+		search: "propertie",
+		components: new Map([
+			["value","id"]
+		]),
+		value: "propertie",
+		table: "properties",
+		tag: "option"
+	})
+	//TYPES
+	searchEvent({
+		listOptions: "datalistOptionsType",
+		search: "type",
+		components: new Map([
+			["value","id"]
+		]),
+		value: "type",
+		table: "types",
+		tag: "option"
 	})
 </script>

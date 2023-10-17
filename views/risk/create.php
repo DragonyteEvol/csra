@@ -2,7 +2,6 @@
 include_once("components/header.php");
 ?>
 <div class="container">
-	
 	<!-- ----------------------------------- -->
 	<div class="card">
 		<form action="/risk/insert" method="POST" class="needs-validation">
@@ -13,7 +12,7 @@ include_once("components/header.php");
 			<div class="card-body">
 				<!-- KRI -->
 				<div class="form-floating mb-3">
-					<input type="text" value="<?= $risk['risk'] ?>" required class="form-control" name="risk" id="floatingInput" placeholder="Insegra un nombre">
+					<input type="text" required class="form-control" name="risk" id="floatingInput" placeholder="Insegra un nombre">
 					<label for="floatingInput">Nombre del riesgo</label>
 				</div>
 				<div class="row">
@@ -28,7 +27,7 @@ include_once("components/header.php");
 					<div class="col-6">
 						<!-- TIPO -->
 						<div class="form-floating mb-3">
-							<select name="propertie_id" class="form-select" id="datalistOptionsType" aria-label="">
+							<select name="type_id" class="form-select" id="datalistOptionsType" aria-label="">
 							</select>
 							<label for="floatingSelect">Tipo</label>
 						</div>
