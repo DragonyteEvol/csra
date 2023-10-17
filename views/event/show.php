@@ -3,9 +3,9 @@ include_once("components/header.php");
 ?>
 <!-- FORMULARIO DE CREACION DE eventS -->
 <div class="container">
-	<form action="/event/update/27" method="POST" class="needs-validation">
+	<?php  foreach($data["events"] as $event): ?>
+	<form action="/event/update/<?= $event['master_id'] ?>" method="POST" class="needs-validation">
 		<div class="card my-5">
-			<?php  foreach($data["events"] as $event): ?>
 			<div class="card-header">
 				<h5><b><?=$event['master_id']?> | </b><?=$event['event']?></h5>
 			</div>

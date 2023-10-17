@@ -213,26 +213,27 @@ class Model{
 	//recibe un id de referencia generalemente el id de el elemento de la tabla principal, y las un diccionario de tabla relacion
 	//no retorna informacion
 	public function refreshDataRelations($id_reference,$relations){
-		foreach(array_keys($relations) as $join){
-			$relation= substr($relations[$join],0,-1);//event
-			$table_relation = substr($join,0,-1) . "_" . $relation;//kri_event
-			$column_2 = substr($join,0,-1) . "_id";//kri_id
-			$column_1 = $relation . "_id";//event_id
-			//BORRA LAS DEPENDECIAS O RELACIONES ANTERIORES
-			$sql = "DELETE FROM $table_relation WHERE $column_2=:id";
-			$state = $this->db->prepare($sql);
-			$state->bindParam(":id",$id_reference);
-			$state->execute();
-			//RECREA LAS DEPENEDENCIAS O RELACIONES
-			$sql = "INSERT INTO $table_relation($column_1,$column_2) VALUES(:$column_1,:$column_2)";
-			for($i=0;$i< count($_POST[$relation]);$i++){
+		if(count($relations)<>0){
+			foreach(array_keys($relations) as $join){
+				$relation= substr($relations[$join],0,-1);//event
+				$table_relation = substr($join,0,-1) . "_" . $relation;//kri_event
+				$column_2 = substr($join,0,-1) . "_id";//kri_id
+				$column_1 = $relation . "_id";//event_id
+				//BORRA LAS DEPENDECIAS O RELACIONES ANTERIORES
+				$sql = "DELETE FROM $table_relation WHERE $column_2=:id";
 				$state = $this->db->prepare($sql);
-				$state->bindParam(":$column_1",$_POST[$relation][$i]);
-				$state->bindParam(":$column_2",$id_reference);
+				$state->bindParam(":id",$id_reference);
 				$state->execute();
+				//RECREA LAS DEPENEDENCIAS O RELACIONES
+				$sql = "INSERT INTO $table_relation($column_1,$column_2) VALUES(:$column_1,:$column_2)";
+				for($i=0;$i< count($_POST[$relation]);$i++){
+					$state = $this->db->prepare($sql);
+					$state->bindParam(":$column_1",$_POST[$relation][$i]);
+					$state->bindParam(":$column_2",$id_reference);
+					$state->execute();
+				}
 			}
 		}
-
 	}
 }
 ?>
