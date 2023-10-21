@@ -104,7 +104,7 @@ include_once("components/header.php");
 <script>
 	function addQualifier(){
 		qualifiers_list = document.getElementById("qualifiers")
-		html = ' <div class="input-group mb-3"> <div class="form-floating"> <input type="text" class="form-control" name="qualifiers[]" id="floatingInputGroup1"> <label for="floatingInputGroup1">Nombre Calificador</label> </div> <div class="form-floating"> <input type="text" class="form-control" name="qualifiers_values[]" id="floatingInputGroup1"> <label for="floatingInputGroup1">Valor</label> </div> </div> '
+		html = ' <div class="input-group mb-3"> <div class="form-floating"> <input type="text" class="form-control" name="qualifier[]" id="floatingInputGroup1"> <label for="floatingInputGroup1">Nombre Calificador</label> </div> <div class="form-floating"> <input type="text" class="form-control" name="qualifiers_values[]" id="floatingInputGroup1"> <label for="floatingInputGroup1">Valor</label> </div> </div> '
 		qualifiers_list.insertAdjacentHTML("beforeend",html)
 	}
 	function customFunction(e){
@@ -133,7 +133,7 @@ include_once("components/header.php");
 		listOptions: "datalistOptionsEvent",
 		search: "event",
 		components: new Map([
-			["id","id"],
+			["id","master_id"],
 			["event","event"]
 		]),
 		value: "event",

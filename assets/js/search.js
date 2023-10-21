@@ -1,4 +1,4 @@
-// crea los eventos necesarios para una busqueda y sus consecuencias
+ // crea los eventos necesarios para una busqueda y sus consecuencias
 // recibe como parametro de entra un json con la configuracion de la busqueda
 
 // componenetEvent = El componente que recibira los eventos de cambio y keyup
@@ -51,6 +51,7 @@ function axios_get(args,options,search=""){
 		method: "GET",
 		url: "/"+args.search+"/search/" + (search.replace(" ","_"))
 	}).then(res =>{
+		console.log(res.data)
 		options.innerHTML = ""
 		select_options = ""
 		for(var p of res.data[args.table]){
@@ -66,10 +67,61 @@ function axios_get(args,options,search=""){
 				select_options += pa[0] + ": "+ '"'+p[val]+'",'
 			}
 			select_options += "})'>"+p[internalValue]+"</"+args.tag+">"
-			console.log(select_options)
 		}
 		options.innerHTML = select_options
 	}).catch(e => {
 		console.log("DEBUG:" + e)
+	})
+}
+
+//-------------------------------------------------------------------------------
+//Busca de forma asincrona en una tabla de base de datos para representarl la informacion consultada en una tabla
+//resibe como entrada un argumento de tipo json de la siguiente forma:
+//
+/*{
+componentevent: "search",
+	listoptions: "kris",
+	search: "kri",
+	components: [
+		"objective",
+		"propertie",
+		"percentage"
+	],
+	value: "kri",
+	table: "kris",
+}*/
+//donde componentEvent es el cuadro de texto sobre el cual se realiza la busqueda
+//listOptions es el cuerpo del elemento sobre el cual se van a mostrar los datos
+//componenets es un array lista o elemeto iterable que contiene todos los datos a representar en la fila de informacion
+//value es el campo principal del registro que generalmente es el nombre y que tiene un link asociado a el
+//tabla es la tabla en base de datos sobre la cual se realizara la consulta
+function searchTable(args){
+	// Tomar los elementos pricipales de la busqueda
+	var componentEvent = document.getElementById(args.componentEvent)
+	var options = document.getElementById(args.listOptions)
+	// evento de keyup y axios
+	componentEvent.addEventListener('keyup',(e) =>{
+		search = componentEvent.value;
+		axios({
+			method: "GET",
+			url: "/"+args.search+"/search/" + (search.replace(" ","_"))
+		}).then(res =>{
+			var html = ""
+			for(var p of res.data[args.table]){
+				html+="<tr><th scope='row'>"+p.master_id+"</th>"
+				html+="<td><a href='/"+args.value+"/show/"+p.master_id+"'>"+p[args.value]+"</a></td>"
+				for(o of args.components){
+					if(o=="score"){
+						html+="<td><span class='badge text-bg-primary'>"+p[o]+"</span></td>"
+					}else{
+						html+="<td>"+p[o]+"</td>"
+					}
+				}
+				html+="</tr>"
+				options.innerHTML=html
+			}
+		}).catch(e => {
+			console.log("DEBUG:" + e)
+		})
 	})
 }

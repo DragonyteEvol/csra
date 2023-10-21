@@ -1,7 +1,7 @@
 <?php 
 class Model{
 	public $db;
-	private $data;
+	public $data;
 	private $process_data;
 
 	public function __construct($second_database = FALSE){
@@ -12,7 +12,6 @@ class Model{
 	/* 	retorna la informacion consultada o registrada */
 	public function getCustom($sql,$param=0){
 		$this->execute($sql,$this->table,$param);
-		return $this->data;
 	}
 
 	/* toma todos los usuarios de la base de datos */
@@ -67,8 +66,8 @@ class Model{
 				$column_1 = $relation . "_id";
 				$column_2 = substr($join,0,-1) . "_id";
 				$join_table = $this->much_to_much[$join];
-				$sql = $sql . "INNER JOIN $table_relation ON $join.id=$table_relation.$column_2 ";
-				$sql = $sql . "INNER JOIN $join_table ON $table_relation.$column_1=$join_table.id ";
+				$sql = $sql . " INNER JOIN $table_relation ON $join.id=$table_relation.$column_2 ";
+				$sql = $sql . " INNER JOIN $join_table ON $table_relation.$column_1=$join_table.id ";
 				$sql = $sql . "WHERE $this->table.id=:id";
 				$this->execute($sql,$join_table,$id);
 				$sql = str_replace("WHERE $this->table.id=:id","",$sql);
@@ -115,8 +114,9 @@ class Model{
 	}
 
 	/* modifica un elemento en la base de datos */
+	/* recibe el id del elemento a modificar */
 	/* 	retorna el ultimo in elemento de la tabla */
-	public function update(){
+	public function update($id){
 		try{
 			if(!$this->db->inTransaction()){
 				$this->db->beginTransaction();
@@ -131,11 +131,12 @@ class Model{
 			}
 			$sql = "UPDATE $this->table set $prepare_sql WHERE id=:id";
 			$state = $this->db->prepare($sql);
-			$this->setParams($state);
-			$state->bindParam(":id",$this->id);
+			$state = $this->setParams($state);
+			$state->bindParam(":id",$id);
 			$state->execute();
-			return $this->db->lastInsertId();
+			$this->refreshDataRelations($id,$this->much_to_much);
 		}catch(PDOException $e){
+			var_dump($e);
 			$this->db->rollBack();
 		}
 	}
@@ -159,8 +160,15 @@ class Model{
 	/* busca elementos en la base de datos */
 	/* 	retorna un array con los elementos encontrados */
 	public function search($search){
+		$sql = "SELECT *,$this->table.id as master_id FROM $this->table ";
+		if(count($this->one_to_one)<>0){
+			foreach($this->one_to_one as $join){
+				$column = substr($join,0,-1) . "_id";
+				$sql = $sql . "INNER JOIN $join ON $this->table.$column=$join.id ";
+			}
+		}
 		$column = substr($this->table,0,-1);
-		$sql = "SELECT * FROM $this->table WHERE $column LIKE '%$search%'";
+		$sql=$sql . " WHERE $column LIKE '%$search%'";
 		$this->execute($sql,$this->table);
 		return $this->data;
 	}
@@ -173,7 +181,7 @@ class Model{
 
 	/* establece las variables de las consultas preparadas */
 	/* 	no retorna informacion pero deja la consulta preparada lista para su ejecucion */
-	private function setParams($state){
+	public function setParams($state){
 		for($i=0;$i < count($this->args);$i++){
 			if($this->args[$i]==":password"){
 				$password = password_hash($this->password,PASSWORD_BCRYPT);
@@ -182,11 +190,12 @@ class Model{
 				$state->bindParam($this->args[$i],$this->{$this->columns[$i]});
 			}
 		}
+		return $state;
 	}
 
 	/* ejecuta la consulta preparada */
-	/* modifica la variable data adjuntando la informacion en esta variable */
-	private function execute($sql,$key,$id=0){
+	/* modifica la variable data adjuntando la informacion en esta variable con llave especifica*/
+	public function execute($sql,$key,$id=0){
 		$state = $this->db->prepare($sql);
 		if($id<>0){
 			$state->bindParam(":id",$id);
@@ -197,6 +206,33 @@ class Model{
 			}
 			$this->data[$key]=$this->process_data;
 			$this->process_data=[];
+		}
+	}
+
+	//BORRA Y RECREA LAS RELACIONES MUCHOS A MUCHOS DE UNA TABLA RELACION
+	//recibe un id de referencia generalemente el id de el elemento de la tabla principal, y las un diccionario de tabla relacion
+	//no retorna informacion
+	public function refreshDataRelations($id_reference,$relations){
+		if(count($relations)<>0){
+			foreach(array_keys($relations) as $join){
+				$relation= substr($relations[$join],0,-1);//event
+				$table_relation = substr($join,0,-1) . "_" . $relation;//kri_event
+				$column_2 = substr($join,0,-1) . "_id";//kri_id
+				$column_1 = $relation . "_id";//event_id
+				//BORRA LAS DEPENDECIAS O RELACIONES ANTERIORES
+				$sql = "DELETE FROM $table_relation WHERE $column_2=:id";
+				$state = $this->db->prepare($sql);
+				$state->bindParam(":id",$id_reference);
+				$state->execute();
+				//RECREA LAS DEPENEDENCIAS O RELACIONES
+				$sql = "INSERT INTO $table_relation($column_1,$column_2) VALUES(:$column_1,:$column_2)";
+				for($i=0;$i< count($_POST[$relation]);$i++){
+					$state = $this->db->prepare($sql);
+					$state->bindParam(":$column_1",$_POST[$relation][$i]);
+					$state->bindParam(":$column_2",$id_reference);
+					$state->execute();
+				}
+			}
 		}
 	}
 }
