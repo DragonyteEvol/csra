@@ -15,10 +15,10 @@ include_once("components/header.php");
 			<div class="col-6">
 				<div class="row">
 					<div class="col-6">
-						<input class="form-control" name="from" type="datetime-local">
+						<input class="form-control" id="from" name="from" type="date">
 					</div>
 					<div class="col-6">
-						<input class="form-control d-flex" name="to" type="datetime-local">
+						<input class="form-control d-flex" id="to" name="to" type="date">
 					</div>
 				</div>
 			</div>
@@ -32,6 +32,7 @@ include_once("components/header.php");
 				<th scope="col">Objetivo</th>
 				<th scope="col">Propiedad</th>
 				<th scope="col">Porcentage</th>
+				<th scope="col">Monitoreo</th>
 			</tr>
 		</thead>
 		<tbody id="kris">
@@ -46,6 +47,7 @@ include_once("components/header.php");
 				<td><?= $kri["objective"] ?></td>
 				<td><?= $kri["propertie"] ?></td>
 				<td><?= $kri["percentage"] ?>%</td>
+				<td><button class="btn btn-primary">º</button></td>
 			</tr>
 			<?php  endforeach; ?>
 		</tbody>

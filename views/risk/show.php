@@ -1,6 +1,5 @@
 <?php  
 include_once("components/header.php");
-var_dump($data);
 ?>
 <div class="container">
 	<!-- ----------------------------------- -->

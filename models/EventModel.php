@@ -29,6 +29,10 @@ class EventModel extends Model{
 		/* consultar eventos y aparicion */
 		foreach($array_events as $event_id){
 			$events = $this->selectById($event_id);
+			if(count($events["events"])==0){
+				$syntax = str_replace($event_id,"0",$syntax);
+				continue;
+			}
 			foreach($events["events"] as $event){
 				$score = $event["score"];
 				$syntax = str_replace($event_id,$score,$syntax);
@@ -70,6 +74,12 @@ class EventModel extends Model{
 	public function selectById($id){
 		$sql = $this->getSelectQuery(FALSE);
 		$sql=$sql . " WHERE $this->table.id='$id' ";
+		//FILTRO DE TIEMPO
+		$from = $_GET["from"];
+		$to = $_GET["to"];
+		if(!empty($from && !empty($to))){
+			$sql=$sql . " AND reported_at BETWEEN '$from' AND '$to' ";
+		}
 		//AGRUPACION POR ID DE OSIEM Y FUENTE PARA EVITAR CRUCES DE EVENTOS
 		$sql = $sql . "GROUP BY $this->table.id,$this->table.event_id,$this->table.source_id";
 		$this->execute($sql,$this->table);
@@ -78,9 +88,11 @@ class EventModel extends Model{
 
 	/* busca elementos en la base de datos */
 	/* 	retorna un array con los elementos encontrados */
-	public function search($search,$from,$to){
+	public function search($search){
 		$sql = $this->getSelectQuery(FALSE);
 		$sql=$sql . " WHERE $this->search_criteria LIKE '%$search%' ";
+		$from = $_GET["from"];
+		$to = $_GET["to"];
 		if(!empty($from && !empty($to))){
 			$sql=$sql . " AND reported_at BETWEEN '$from' AND '$to' ";
 		}

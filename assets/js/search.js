@@ -1,4 +1,4 @@
- // crea los eventos necesarios para una busqueda y sus consecuencias
+// crea los eventos necesarios para una busqueda y sus consecuencias
 // recibe como parametro de entra un json con la configuracion de la busqueda
 
 // componenetEvent = El componente que recibira los eventos de cambio y keyup
@@ -6,7 +6,7 @@
 // searh = el nombre del modelo sin "controller" sobre el cual se realizara la busqueda
 // componnets = el arreglo de componenetes que se quiere modificar cuando el evento arroje respuesta
 // value = el valor que se quiere representar en la opcion de listOptions
-	// EJEMPLO
+// EJEMPLO
 // ({
 // componentEvent: "template",
 // 	listOptions: "datalistOptions",
@@ -98,16 +98,22 @@ componentevent: "search",
 function searchTable(args){
 	// Tomar los elementos pricipales de la busqueda
 	var componentEvent = document.getElementById(args.componentEvent)
-	var from = document.getElementById(args.date.from)
-	var to = document.getElementById(args.date.to)
+	if(args.date){
+		var from = document.getElementById(args.date.from)
+		var to = document.getElementById(args.date.to)
+	}
 	var options = document.getElementById(args.listOptions)
 	// evento de keyup y axios
 	componentEvent.addEventListener('keyup',(e) =>{
 		search = componentEvent.value;
-		console.log("/"+args.search+"/search/" + (search.replace(" ","_")) +"/"+ formatDate(from.value) +"/"+ formatDate(to.value))
+		if(args.date){
+			var uri =  "/"+args.search+"/search/" + (search.replace(" ","_")) +"/"+ formatDate(from.value) +"/"+ formatDate(to.value)
+		}else{
+			var uri = "/"+args.search+"/search/"  + (search.replace(" ","_")) +"//"
+		}
 		axios({
 			method: "GET",
-			url: "/"+args.search+"/search/" + (search.replace(" ","_")) +"/"+ formatDate(from.value) +"/"+ formatDate(to.value)
+			url: uri
 		}).then(res =>{
 			var html = ""
 			for(var p of res.data[args.table]){
@@ -129,14 +135,23 @@ function searchTable(args){
 	})
 }
 
-function formatDate(date){
-	if(date.trim().length === 0){
+function redirect(controller,id,from,to){
+	var Ifrom = document.getElementById(from)
+	var Ito = document.getElementById(to)
+	from = formatDate(Ifrom.value)
+	to = formatDate(Ito.value)
+	console.log('/' + controller + "/show/" + id + "/" + from + "/" + to)
+	location.href ='/' + controller + "/show/" + id + "/" + from + "/" + to;	
+}
+
+function formatDate(datef){
+	if(datef.trim().length === 0){
 		return '';
 	}
-	var date = new Date(date);
+	var date = new Date(datef);
 	var getYear = date.toLocaleString("default", { year: "numeric" });
 	var getMonth = date.toLocaleString("default", { month: "2-digit" });
-	var getDay = date.toLocaleString("default", { day: "2-digit" });
-	var dateFormat = getYear + getMonth + getDay;
+	var getDay = date.toLocaleString("default", { day: "numeric" });
+	var dateFormat = getYear + getMonth + (getDay);
 	return dateFormat
 }
