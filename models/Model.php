@@ -159,7 +159,7 @@ class Model{
 
 	/* busca elementos en la base de datos */
 	/* 	retorna un array con los elementos encontrados */
-	public function search($search){
+	public function search($search,$from,$to){
 		$sql = "SELECT *,$this->table.id as master_id FROM $this->table ";
 		if(count($this->one_to_one)<>0){
 			foreach($this->one_to_one as $join){
@@ -169,6 +169,9 @@ class Model{
 		}
 		$column = substr($this->table,0,-1);
 		$sql=$sql . " WHERE $column LIKE '%$search%'";
+		if(!empty($from && !empty($to))){
+			$sql=$sql . " AND reported_at BETWEEN '$from' AND '$to'";
+		}
 		$this->execute($sql,$this->table);
 		return $this->data;
 	}

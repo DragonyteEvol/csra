@@ -78,9 +78,12 @@ class EventModel extends Model{
 
 	/* busca elementos en la base de datos */
 	/* 	retorna un array con los elementos encontrados */
-	public function search($search){
+	public function search($search,$from,$to){
 		$sql = $this->getSelectQuery(FALSE);
 		$sql=$sql . " WHERE $this->search_criteria LIKE '%$search%' ";
+		if(!empty($from && !empty($to))){
+			$sql=$sql . " AND reported_at BETWEEN '$from' AND '$to' ";
+		}
 		//AGRUPACION POR ID DE OSIEM Y FUENTE PARA EVITAR CRUCES DE EVENTOS
 		$sql = $sql . "GROUP BY $this->table.id,$this->table.event_id,$this->table.source_id";
 		$this->execute($sql,$this->table);

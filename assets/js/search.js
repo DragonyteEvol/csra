@@ -98,13 +98,16 @@ componentevent: "search",
 function searchTable(args){
 	// Tomar los elementos pricipales de la busqueda
 	var componentEvent = document.getElementById(args.componentEvent)
+	var from = document.getElementById(args.date.from)
+	var to = document.getElementById(args.date.to)
 	var options = document.getElementById(args.listOptions)
 	// evento de keyup y axios
 	componentEvent.addEventListener('keyup',(e) =>{
 		search = componentEvent.value;
+		console.log("/"+args.search+"/search/" + (search.replace(" ","_")) +"/"+ formatDate(from.value) +"/"+ formatDate(to.value))
 		axios({
 			method: "GET",
-			url: "/"+args.search+"/search/" + (search.replace(" ","_"))
+			url: "/"+args.search+"/search/" + (search.replace(" ","_")) +"/"+ formatDate(from.value) +"/"+ formatDate(to.value)
 		}).then(res =>{
 			var html = ""
 			for(var p of res.data[args.table]){
@@ -124,4 +127,16 @@ function searchTable(args){
 			console.log("DEBUG:" + e)
 		})
 	})
+}
+
+function formatDate(date){
+	if(date.trim().length === 0){
+		return '';
+	}
+	var date = new Date(date);
+	var getYear = date.toLocaleString("default", { year: "numeric" });
+	var getMonth = date.toLocaleString("default", { month: "2-digit" });
+	var getDay = date.toLocaleString("default", { day: "2-digit" });
+	var dateFormat = getYear + getMonth + getDay;
+	return dateFormat
 }

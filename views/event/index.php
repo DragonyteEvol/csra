@@ -17,19 +17,16 @@ include_once("components/header.php");
 			<div class="col-6">
 				<div class="row">
 					<div class="col-6">
-						<input class="form-control" name="from" type="datetime-local">
+						<input class="form-control" id="from" name="from" type="date">
 					</div>
 					<div class="col-6">
-						<input class="form-control d-flex" name="to" type="datetime-local">
+						<input class="form-control d-flex" id="to" name="to" type="date">
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
-
-	<table class="table table-borderless">
-		<thead>
-			<tr>
+<table class="table table-borderless"> <thead> <tr>
 				<th scope="col">#</th>
 				<th scope="col">Evento</th>
 				<th scope="col">Tipo</th>
@@ -115,7 +112,7 @@ include_once("components/header.php");
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/axios@1.1.2/dist/axios.min.js"></script>
-<script src="assets/js/search.js"></script>
+<script src="/assets/js/search.js"></script>
 <script>
 	/* searchEvent({ */
 	/* componentEvent: "template", */
@@ -128,19 +125,19 @@ include_once("components/header.php");
 	/* 	]), */
 	/* 	value: "name" */
 	/* }) */
-	searchEvent({
-		componentEvent: "template",
-		listOptions: "datalistOptions",
-		search: "template",
-		components: new Map([
-			["source_id","plugin_id"],
-			["source","vendor"],
-			["event_id","sid"]
-		]),
-		value: "name",
-		table: "plugin_sid",
-		tag: "option"
-	})
+	/* searchEvent({ */
+	/* 	componentEvent: "template", */
+	/* 	listOptions: "datalistOptions", */
+	/* 	search: "template", */
+	/* 	components: new Map([ */
+	/* 		["source_id","plugin_id"], */
+	/* 		["source","vendor"], */
+	/* 		["event_id","sid"] */
+	/* 	]), */
+	/* 	value: "name", */
+	/* 	table: "plugin_sid", */
+	/* 	tag: "option" */
+	/* }) */
 	searchTable({
 		componentEvent: "searchEvent",
 		listOptions: "events",
@@ -151,6 +148,10 @@ include_once("components/header.php");
 		],
 		value: "event",
 		table: "events",
+		date: {
+			from: "from",
+			to: "to"
+		}
 	})
 </script>
 </script>

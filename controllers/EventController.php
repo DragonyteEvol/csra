@@ -8,5 +8,6 @@ class EventController extends Controller{
 		parent::__construct();
 		$this->model = new EventModel();
 	}
+
 }
 ?>

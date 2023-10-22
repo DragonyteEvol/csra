@@ -1,0 +1,9 @@
+cd .git/objects; 
+for d in * ; do (
+  cd "$d"; 
+  for p in * ; do ( 
+    stat "/home/dragonyte/Backup/csra1/.git/objects/$d/$p";
+    git cat-file -p $d$p;
+	echo "---------------------------------------------------------------------------------"
+  ); done 
+); done

@@ -58,7 +58,9 @@ class Controller{
 
 	public function search(){
 		$search = $_GET["id"];
-		$data = $this->model->search($search);
+		$from= $_GET["from"];
+		$to = $_GET["to"];
+		$data = $this->model->search($search,$from,$to);
 		echo json_encode($data);
 	}
 
