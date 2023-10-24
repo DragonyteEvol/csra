@@ -23,12 +23,17 @@ class EventModel extends Model{
 	/* Calcula el valor de un ecuacion relacionando los numeros a id de eventos y consultando su repeticion de aparicion en OSIEM en un tiempo determinado */
 	/* recibe como entrada una ecuacion en formato string */
 	/* retorna un numero con el valor de la ecuacion en un tiempo determinado */
+	/* genera una llave en el array principal con la llave event_score que contiene todos los eventos procesados para generar el score */
 	public function getScore($syntax){
+		//definimos la llave de los eventos implicados 
+		$this->data["event_score"] = [];
 		/* generar array de numeros */
 		$array_events= $this->extractNumberEvents($syntax);
 		/* consultar eventos y aparicion */
 		foreach($array_events as $event_id){
 			$events = $this->selectById($event_id);
+			//agregamos el evento al array
+			array_push($this->data["event_score"],$events["events"][0]);
 			if(count($events["events"])==0){
 				$syntax = str_replace($event_id,"0",$syntax);
 				continue;
@@ -68,7 +73,7 @@ class EventModel extends Model{
 		return $array_number;
 	}
 
-	
+
 	/* busca elementos en la base de datos */
 	/* 	retorna un array con los elementos encontrados */
 	public function selectById($id){
