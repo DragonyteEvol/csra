@@ -35,6 +35,9 @@ class KriModel extends Model{
 		$this->data["score"] = $this->event_model->getScore($syntax);
 		//creamos una llave en el array principal con los enventos implicados en el calculo y su conteo individual
 		$this->data["event_score"] =$this->event_model->data["event_score"];
+		$this->data["event"] =$this->event_model->data["event"];
+		$this->data["syntax_abstract"] = $this->event_model->data["syntax_abstract"];
+		$this->data["syntax"] = $this->event_model->data["syntax"];
 		/* puntaje ponderado por calificadores */
 		$this->data["score_qualified"]=$this->qualifier_model->getQualifierScore($id,$this->data["score"]);
 		return $this->data["score_qualified"];

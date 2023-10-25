@@ -23,11 +23,20 @@ class RiskModel extends Model{
 
 	public function getScore($kris){
 		$score = 0;
+		$this->data["kri_score"] = array();
+		$this->data["event_score"] = array();
 		foreach($this->data["kris"] as $kri){
 			$kri_score = $this->kri_model->getScore($kri["id"],$kri["syntax"]);
+			$kri["score"] = $kri_score;
+			$kri["syntax_abstract"] = $this->kri_model->data["syntax_abstract"];
+			$kri["syntax"] = $this->kri_model->data["syntax"];
 			$kri_score = $kri_score["value"] * ($kri["percentage"]/100);
 			$score += $kri_score;
+			//AGREGAMOS EL KRI CON SU PUNTAJE A LA LISTA DATA PARA USARLA EN LA VISTA 
+			array_push($this->data["kri_score"],$kri);
+			$this->data["event_score"] = array_merge($this->data["event_score"],$this->kri_model->data["event_score"]);
 		};
+		/* $this->data["event_score"] = $this->kri_model->data; */
 		return $score;
 	}
 

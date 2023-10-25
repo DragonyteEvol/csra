@@ -26,10 +26,11 @@ class EventModel extends Model{
 	/* genera una llave en el array principal con la llave event_score que contiene todos los eventos procesados para generar el score */
 	public function getScore($syntax){
 		//definimos la llave de los eventos implicados 
-		$this->data["event_score"] = [];
+		$this->data["event_score"] = array();
 		/* generar array de numeros */
 		$array_events= $this->extractNumberEvents($syntax);
 		/* consultar eventos y aparicion */
+		$abstract_syntax = $syntax;
 		foreach($array_events as $event_id){
 			$events = $this->selectById($event_id);
 			//agregamos el evento al array
@@ -42,7 +43,12 @@ class EventModel extends Model{
 				$score = $event["score"];
 				$syntax = str_replace($event_id,$score,$syntax);
 			}
+			$abstract_syntax = str_replace($event_id,$events["events"][0]["event"],$abstract_syntax);
+
 		}
+		//INFORMACION ADICIONAL
+		$this->data["syntax_abstract"] = $abstract_syntax;
+		$this->data["syntax"] = $syntax;
 		/* evaluar ecuacion */
 		/* !!!!!!IMPORTANTE!!!!!!!!! */
 		/* Aplicar tecnicas de sanitizacion debido a que la funcion eval puede ser muy peligrosa y poner en riesgo la informacion */

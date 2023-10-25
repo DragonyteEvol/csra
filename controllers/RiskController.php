@@ -12,7 +12,8 @@ class RiskController extends Controller{
 	public function show(){
 		$id = $_GET["id"]; 
 		$data=$this->model->selectById($id);
-		$data["score"] = $this->model->getScore($data["kris"]);
+		$this->model->data["score"] = $this->model->getScore($data["kris"]);
+		$data = $this->model->data;
 		require_once("views/$this->controller/show.php");
 	}
 }
