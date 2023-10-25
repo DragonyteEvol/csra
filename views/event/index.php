@@ -110,7 +110,6 @@ include_once("components/header.php");
 		</div>
 	</div>
 </div>
-
 <script src="https://cdn.jsdelivr.net/npm/axios@1.1.2/dist/axios.min.js"></script>
 <script src="/assets/js/search.js"></script>
 <script>
@@ -125,19 +124,19 @@ include_once("components/header.php");
 	/* 	]), */
 	/* 	value: "name" */
 	/* }) */
-	/* searchEvent({ */
-	/* 	componentEvent: "template", */
-	/* 	listOptions: "datalistOptions", */
-	/* 	search: "template", */
-	/* 	components: new Map([ */
-	/* 		["source_id","plugin_id"], */
-	/* 		["source","vendor"], */
-	/* 		["event_id","sid"] */
-	/* 	]), */
-	/* 	value: "name", */
-	/* 	table: "plugin_sid", */
-	/* 	tag: "option" */
-	/* }) */
+	searchEvent({
+		componentEvent: "template",
+		listOptions: "datalistOptions",
+		search: "template",
+		components: new Map([
+			["source_id","plugin_id"],
+			["source","vendor"],
+			["event_id","sid"]
+		]),
+		value: "name",
+		table: "plugin_sid",
+		tag: "option"
+	})
 	searchTable({
 		componentEvent: "searchEvent",
 		listOptions: "events",
@@ -153,5 +152,4 @@ include_once("components/header.php");
 			to: "to"
 		}
 	})
-</script>
 </script>

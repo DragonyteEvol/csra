@@ -6,7 +6,7 @@
 	$database = "csra";
 
 	/* base de datos remota */
-	$server2 = "192.168.1.199";
+	$server2 = "192.168.1.217";
 	$username2 = "bot";
 	$password2 = "@Globaltek@2022";
 	$database2 = "alienvault";

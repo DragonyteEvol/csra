@@ -11,8 +11,8 @@ class TemplateModel extends Model{
 	public function search($search)
 	{
 		$sql = "SELECT $this->table.name,plugin_id,sid,vendor from $this->table inner join plugin on plugin.id=plugin_sid.plugin_id where $this->table.name like '%$search%' limit 10";
-		$data = $this->getCustom($sql);
-		return ($data);
+		$this->getCustom($sql);
+		return ($this->data);
 	}
 
 }
