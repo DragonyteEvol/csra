@@ -15,6 +15,7 @@ class EventModel extends Model{
 	public function getAll(){
 		//optencion de query
 		$sql = $this->getSelectQuery(TRUE);
+		echo $sql;
 		/* ejecucion de query */
 		$this->execute($sql,$this->table);
 		return $this->data;
@@ -117,7 +118,7 @@ class EventModel extends Model{
 	//recibe como paremetros un booleano para inyectar al query la agrupacion por evento y fuente
 	//retorna un string con la query a ejecutar
 	private function getSelectQuery($group){
-		$sql = "SELECT *,count($this->table.event_id) as score,$this->table.id as master_id FROM $this->table ";
+		$sql = "SELECT *,count($this->record_table.event_id) as score,$this->table.id as master_id FROM $this->table ";
 		//UNION A CALCULO DE PUNTAJE 
 		$sql = $sql . "LEFT JOIN $this->record_table ON $this->table.event_id=$this->record_table.event_id AND $this->table.source_id=$this->record_table.source_id ";
 		//AGRUPACION POR ID DE OSIEM Y FUENTE PARA EVITAR CRUCES DE EVENTOS

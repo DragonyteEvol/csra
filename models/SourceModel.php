@@ -11,9 +11,9 @@ class SourceModel extends Model{
 	public function getAll()
 	{
 		$sql = "SELECT vendor FROM $this->table GROUP BY 1";
-		$data =$this->getCustom($sql);
-		var_dump($data);
-		return $data;
+		$this->getCustom($sql);
+		var_dump($this->data);
+		return $this->data;
 	}
 
 }
