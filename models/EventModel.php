@@ -15,7 +15,6 @@ class EventModel extends Model{
 	public function getAll(){
 		//optencion de query
 		$sql = $this->getSelectQuery(TRUE);
-		echo $sql;
 		/* ejecucion de query */
 		$this->execute($sql,$this->table);
 		return $this->data;
