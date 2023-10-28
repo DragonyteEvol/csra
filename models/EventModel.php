@@ -34,6 +34,11 @@ class EventModel extends Model{
 		foreach($array_events as $event_id){
 			$events = $this->selectById($event_id);
 			//agregamos el evento al array
+			//validando si el rango de tiempo arrojo informacion
+			if(is_null($events["events"][0])){
+				$events = $this->selectById($event_id,FALSE);
+				$events["events"][0]["score"] = "0";
+			}
 			array_push($this->data["event_score"],$events["events"][0]);
 			if(count($events["events"])==0){
 				$syntax = str_replace($event_id,"0",$syntax);
@@ -82,13 +87,13 @@ class EventModel extends Model{
 
 	/* busca elementos en la base de datos */
 	/* 	retorna un array con los elementos encontrados */
-	public function selectById($id){
+	public function selectById($id,$time=TRUE){
 		$sql = $this->getSelectQuery(FALSE);
 		$sql=$sql . " WHERE $this->table.id='$id' ";
 		//FILTRO DE TIEMPO
 		$from = $_GET["from"];
 		$to = $_GET["to"];
-		if(!empty($from && !empty($to))){
+		if(!empty($from) && !empty($to) && $time){
 			$sql=$sql . " AND reported_at BETWEEN '$from' AND '$to' ";
 		}
 		//AGRUPACION POR ID DE OSIEM Y FUENTE PARA EVITAR CRUCES DE EVENTOS
