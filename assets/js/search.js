@@ -111,6 +111,7 @@ function searchTable(args){
 		}else{
 			var uri = "/"+args.search+"/search/"  + (search.replace(" ","_")) +"//"
 		}
+		console.log(uri)
 		axios({
 			method: "GET",
 			url: uri
@@ -149,9 +150,10 @@ function formatDate(datef){
 		return '';
 	}
 	var date = new Date(datef);
+	date.setDate(date.getDate() + 1)
 	var getYear = date.toLocaleString("default", { year: "numeric" });
 	var getMonth = date.toLocaleString("default", { month: "2-digit" });
-	var getDay = date.toLocaleString("default", { day: "numeric" });
+	var getDay = date.toLocaleString("default", { day: "2-digit" });
 	var dateFormat = getYear + getMonth + (getDay);
 	return dateFormat
 }
