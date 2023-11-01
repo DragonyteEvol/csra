@@ -3,6 +3,7 @@ class UserModel extends Model{
 	protected $table = "users";
 	protected $columns = ["name","email","password"];
 	protected $args = [":name",":email",":password"];
+	protected $one_to_much= ["users"=>"access"];
 
 	public function __construct(){
 		parent::__construct();
