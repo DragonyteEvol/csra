@@ -2,6 +2,7 @@
 require_once("models/KriModel.php");
 require_once("models/ThresholdModel.php");
 require_once("models/EventModel.php");
+require_once("models/QualifierModel.php");
 class KriController extends Controller{
 
 	public $autosave = false;
@@ -12,6 +13,7 @@ class KriController extends Controller{
 		$this->model = new KriModel(); //AFECTA A LA TABLA KRIS
 		$this->event_model = new EventModel(); //AFECTA LA TABLA EVENTS
 		$this->threshold_model = new ThresholdModel(); //AFECTA A LA TABLA QUALIFIERS
+		$this->qualifier_model = new QualifierModel(); //AFECTA A LA TABLA QUALIFIERS
 	}
 
 	/* inserta un kri en base de datos y sus calificadores */
@@ -43,5 +45,10 @@ class KriController extends Controller{
 		header("Location: /$this->controller");
 	}
 
+	/* retona la vista de inicio y trae sus datos en lista */
+	public function create(){
+		$data=$this->qualifier_model->getAll();
+		require_once("views/$this->controller/create.php");
+	}
 }
 ?>

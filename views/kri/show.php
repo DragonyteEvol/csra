@@ -1,12 +1,11 @@
 <?php  ;
 include_once("components/header.php");
 ?>
-
 <!-- FORMULARIO DE CREACION DE KRIS -->
 <div class="container">
 	<!-- FORMULARIO Y DATOS DE KRI -->
 	<?php  foreach($data["kris"] as $kri): ?>
-<!-- FECHAS INPUTS -->
+	<!-- FECHAS INPUTS -->
 	<div class="row my-2">
 		<div class="col-12">
 			<div class="row">
@@ -16,13 +15,13 @@ include_once("components/header.php");
 				<div class="col-6">
 					<div class="input-group">
 						<input class="form-control d-flex bg-white rounded-lg shadow" id="to" name="to" type="date">
-				<button onclick="redirect('kri',<?= $kri["master_id"] ?>,'from','to')" class="btn btn-primary"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="white" d="M10 11H7.101l.001-.009a4.956 4.956 0 0 1 .752-1.787a5.054 5.054 0 0 1 2.2-1.811c.302-.128.617-.226.938-.291a5.078 5.078 0 0 1 2.018 0a4.978 4.978 0 0 1 2.525 1.361l1.416-1.412a7.036 7.036 0 0 0-2.224-1.501a6.921 6.921 0 0 0-1.315-.408a7.079 7.079 0 0 0-2.819 0a6.94 6.94 0 0 0-1.316.409a7.04 7.04 0 0 0-3.08 2.534a6.978 6.978 0 0 0-1.054 2.505c-.028.135-.043.273-.063.41H2l4 4l4-4zm4 2h2.899l-.001.008a4.976 4.976 0 0 1-2.103 3.138a4.943 4.943 0 0 1-1.787.752a5.073 5.073 0 0 1-2.017 0a4.956 4.956 0 0 1-1.787-.752a5.072 5.072 0 0 1-.74-.61L7.05 16.95a7.032 7.032 0 0 0 2.225 1.5c.424.18.867.317 1.315.408a7.07 7.07 0 0 0 2.818 0a7.031 7.031 0 0 0 4.395-2.945a6.974 6.974 0 0 0 1.053-2.503c.027-.135.043-.273.063-.41H22l-4-4l-4 4z"/></svg></button>
+						<button onclick="redirect('kri',<?= $kri["master_id"] ?>,'from','to')" class="btn btn-primary"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="white" d="M10 11H7.101l.001-.009a4.956 4.956 0 0 1 .752-1.787a5.054 5.054 0 0 1 2.2-1.811c.302-.128.617-.226.938-.291a5.078 5.078 0 0 1 2.018 0a4.978 4.978 0 0 1 2.525 1.361l1.416-1.412a7.036 7.036 0 0 0-2.224-1.501a6.921 6.921 0 0 0-1.315-.408a7.079 7.079 0 0 0-2.819 0a6.94 6.94 0 0 0-1.316.409a7.04 7.04 0 0 0-3.08 2.534a6.978 6.978 0 0 0-1.054 2.505c-.028.135-.043.273-.063.41H2l4 4l4-4zm4 2h2.899l-.001.008a4.976 4.976 0 0 1-2.103 3.138a4.943 4.943 0 0 1-1.787.752a5.073 5.073 0 0 1-2.017 0a4.956 4.956 0 0 1-1.787-.752a5.072 5.072 0 0 1-.74-.61L7.05 16.95a7.032 7.032 0 0 0 2.225 1.5c.424.18.867.317 1.315.408a7.07 7.07 0 0 0 2.818 0a7.031 7.031 0 0 0 4.395-2.945a6.974 6.974 0 0 0 1.053-2.503c.027-.135.043-.273.063-.41H22l-4-4l-4 4z"/></svg></button>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
-		<!-- PRIMERA FILA -->
+	<!-- PRIMERA FILA -->
 	<div class="row">
 		<div class="col-xl-4 col-lg-6 mb-4">
 			<div class="bg-white rounded-lg p-5 shadow">
@@ -112,17 +111,12 @@ include_once("components/header.php");
 						</div>
 					</div>
 					<div class="col-6">
-						<!-- PORCENTAJE -->
+						<!-- SYNTAX-->
 						<div class="form-floating mb-3">
-							<input name="percentage" type="number" value="<?= $kri['percentage'] ?>" class="form-control">
-							<label for="floatingInput">Porcentaje</label>
+							<input name="syntax" type="text" value="<?= $kri['syntax'] ?>" class="form-control disabled">
+							<label for="floatingInput">Sintaxis / Operacion de kri</label>
 						</div>
 					</div>
-				</div>
-				<!-- SYNTAX-->
-				<div class="form-floating mb-3">
-					<input name="syntax" type="text" value="<?= $kri['syntax'] ?>" class="form-control disabled">
-					<label for="floatingInput">Sintaxis / Operacion de kri</label>
 				</div>
 				<div class="accordion accordion-flush" id="accordionFlushExample">
 					<!-- EVENTOS -->
@@ -156,7 +150,7 @@ include_once("components/header.php");
 					<div class="accordion-item">
 						<h2 class="accordion-header">
 							<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#threshold-collapse" aria-expanded="false" aria-controls="flush-collapseOne">
-								Umbrales	
+								Calificadores
 							</button>
 						</h2>
 						<div id="threshold-collapse" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
@@ -165,7 +159,7 @@ include_once("components/header.php");
 								<div class="input-group mb-3">
 									<div class="form-floating">
 										<input type="text" value="<?= $threshold['type'] ?>" class="form-control" name="threshold[]" id="floatingInputGroup1">
-										<label for="floatingInputGroup1">Nombre del umbral</label>
+										<label for="floatingInputGroup1">Nombre Calificador</label>
 									</div>
 									<div class="form-floating">
 										<input type="text" class="form-control" value="<?= $threshold['value'] ?>" name="threshold_value[]" id="floatingInputGroup1">
@@ -174,9 +168,6 @@ include_once("components/header.php");
 								</div>
 								<?php  endforeach; ?>
 							</div>
-							<button type="button" onclick="addQualifier()" class="form-control btn btn-outline-primary btn-sm">
-								Agregar
-							</button>
 						</div>
 					</div>
 					<div class="accordion-item">
@@ -253,11 +244,6 @@ include_once("components/header.php");
 		modal = document.getElementById("addKri")
 		modal.hide()
 	}
-	function addQualifier(){
-		thresholds_list = document.getElementById("thresholds")
-		html = ' <div class="input-group mb-3"> <div class="form-floating"> <input type="text" class="form-control" name="threshold[]" id="floatingInputGroup1"> <label for="floatingInputGroup1">Nombre Calificador</label> </div> <div class="form-floating"> <input type="text" class="form-control" name="thresholds_values[]" id="floatingInputGroup1"> <label for="floatingInputGroup1">Valor</label> </div> </div> '
-		thresholds_list.insertAdjacentHTML("beforeend",html)
-	}
 	searchEvent({
 		listOptions: "datalistOptions",
 		search: "propertie",
@@ -283,4 +269,3 @@ include_once("components/header.php");
 		class: "btn btn-outline-primary form-control m-2' data-bs-dismiss='modal",
 	})
 </script>
-

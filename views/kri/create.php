@@ -4,11 +4,11 @@ include_once("components/header.php");
 <!-- FORMULARIO DE CREACION DE KRIS -->
 <div class="container">
 	<form action="/kri/insert" method="POST" class="needs-validation">
-		<div class="card">
-			<div class="card-header">
-				<h2 class="my-3">Creacion de KRI</h2>
-			</div>
+		<div class="bg-white rounded-lg p-5 shadow my-3">
 			<div class="card-body">
+				<div class="card-tittle">
+					<h5>Creacion de KRI</h5>
+				</div>
 				<!-- KRI -->
 				<div class="form-floating mb-3">
 					<input type="text"Crear KRI required class="form-control" name="kri" id="floatingInput" placeholder="Insegra un nombre">
@@ -47,33 +47,24 @@ include_once("components/header.php");
 					<input name="syntax" type="text" class="form-control disabled">
 					<label for="floatingInput">Sintaxis / Operacion de kri</label>
 				</div>
-				<!-- QUALIFIERS -->
-				<div class="card">
-					<div class="card-header">
-						<h5 class="mt-2">Umbrales</h5>
+				<!-- UMBRALES -->
+				<?php  foreach($data["qualifiers"] as $qualifiers): ?>
+				<div class="input-group mb-3">
+					<div class="form-floating">
+						<input type="text" disabled value="<?= $qualifiers['qualifier'] ?>" class="form-control" name="thresholds[]" id="floatingInputGroup1">
+						<label for="floatingInputGroup1">Nombre del umbral</label>
 					</div>
-					<div class="card-body" id="thresholds">
-						<div class="input-group mb-3">
-							<div class="form-floating">
-								<input type="text" class="form-control" name="thresholds[]" id="floatingInputGroup1">
-								<label for="floatingInputGroup1">Nombre Calificador</label>
-							</div>
-							<div class="form-floating">
-								<input type="text" class="form-control" name="thresholds_values[]" id="floatingInputGroup1">
-								<label for="floatingInputGroup1">Valor</label>
-							</div>
-						</div>
-					</div>
-					<div class="card-footer">
-						<button type="button" onclick="addQualifier()" class="form-control btn btn-primary">
-							Agregar
-						</button>
+					<div class="form-floating">
+						<input type="text" class="form-control" name="thresholds_values[]" id="floatingInputGroup1">
+						<label for="floatingInputGroup1">Valor</label>
 					</div>
 				</div>
-			</div>
-			<div class="card-footer">
-				<!-- END FIELD -->
-				<button type="submit" class="btn btn-primary">Enviar</button>
+				<?php  endforeach; ?>
+
+				<div class="card-footer">
+					<!-- END FIELD -->
+					<button type="submit" class="btn btn-primary">Enviar</button>
+				</div>
 			</div>
 		</div>
 	</form>
@@ -102,11 +93,6 @@ include_once("components/header.php");
 <script src="https://cdn.jsdelivr.net/npm/axios@1.1.2/dist/axios.min.js"></script>
 <script src="/assets/js/search.js"></script>
 <script>
-	function addQualifier(){
-		thresholds_list = document.getElementById("thresholds")
-		html = ' <div class="input-group mb-3"> <div class="form-floating"> <input type="text" class="form-control" name="threshold[]" id="floatingInputGroup1"> <label for="floatingInputGroup1">Nombre Calificador</label> </div> <div class="form-floating"> <input type="text" class="form-control" name="thresholds_values[]" id="floatingInputGroup1"> <label for="floatingInputGroup1">Valor</label> </div> </div> '
-		thresholds_list.insertAdjacentHTML("beforeend",html)
-	}
 	function customFunction(e){
 		console.log(e)
 		events = document.getElementById("events")
