@@ -29,10 +29,10 @@ include_once("components/header.php");
 						</div>
 					</div>
 					<div class="col-6">
-						<!-- PORCENTAJE -->
+						<!-- SYNTAX-->
 						<div class="form-floating mb-3">
-							<input name="percentage" type="number" class="form-control">
-							<label for="floatingInput">Porcentaje</label>
+							<input name="syntax" type="text" class="form-control disabled">
+							<label for="floatingInput">Sintaxis / Operacion de kri</label>
 						</div>
 					</div>
 				</div>
@@ -42,11 +42,6 @@ include_once("components/header.php");
 				</button>
 				<select name="event[]" id="events" class="form-select mb-3" multiple>
 				</select>
-				<!-- SYNTAX-->
-				<div class="form-floating mb-3">
-					<input name="syntax" type="text" class="form-control disabled">
-					<label for="floatingInput">Sintaxis / Operacion de kri</label>
-				</div>
 				<!-- UMBRALES -->
 				<?php  foreach($data["qualifiers"] as $qualifiers): ?>
 				<div class="input-group mb-3">

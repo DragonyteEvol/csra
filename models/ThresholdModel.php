@@ -1,4 +1,5 @@
 <?php 
+require_once("models/QualifierModel.php");
 class ThresholdModel extends Model{
 	protected $table = "thresholds";
 	protected $columns = ["type","value","kri_id"];
@@ -6,6 +7,7 @@ class ThresholdModel extends Model{
 
 	public function __construct(){
 		parent::__construct();
+		$this->qualifier_model = new QualifierModel();
 	}
 
 	/* realciona un puntaje con el valor de un calificador */
@@ -23,11 +25,12 @@ class ThresholdModel extends Model{
 	/* recibe el id del kri y la conexion con base de datos para continuar la transaccion */
 	/* no retorna informacion */
 	public function insertThresholds($kri_id,$db){
+		$qualifiers = $this->qualifier_model->getAll();
 		$this->db = $db;
 		$this->kri_id=$kri_id;
-		for($i=0;$i < count($_POST["threshold"]);$i++){
-			$this->type=$_POST["threshold"][$i];
-			$this->value=$_POST["threshold_value"][$i];
+		for($i=0;$i < count($qualifiers["qualifiers"]);$i++){
+			$this->type=$qualifiers["qualifiers"][$i]["qualifier"];
+			$this->value=$_POST["thresholds_values"][$i];
 			$this->insert();
 		}
 	}

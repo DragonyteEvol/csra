@@ -31,7 +31,7 @@ include_once("components/header.php");
 				<th scope="col">KRI</th>
 				<th scope="col">Objetivo</th>
 				<th scope="col">Propiedad</th>
-				<th scope="col">Porcentage</th>
+				<th scope="col">Fecha Creacion</th>
 				<th scope="col">Monitoreo</th>
 			</tr>
 		</thead>
@@ -46,7 +46,7 @@ include_once("components/header.php");
 				</td>
 				<td><?= $kri["objective"] ?></td>
 				<td><?= $kri["propertie"] ?></td>
-				<td><?= $kri["percentage"] ?>%</td>
+				<td><?= $kri["created_at"] ?></td>
 				<td><button class="btn btn-primary">º</button></td>
 			</tr>
 			<?php  endforeach; ?>

@@ -150,7 +150,7 @@ include_once("components/header.php");
 					<div class="accordion-item">
 						<h2 class="accordion-header">
 							<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#threshold-collapse" aria-expanded="false" aria-controls="flush-collapseOne">
-								Calificadores
+								Umbrales	
 							</button>
 						</h2>
 						<div id="threshold-collapse" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
@@ -158,11 +158,11 @@ include_once("components/header.php");
 								<?php  foreach($data["thresholds"] as $threshold): ?>
 								<div class="input-group mb-3">
 									<div class="form-floating">
-										<input type="text" value="<?= $threshold['type'] ?>" class="form-control" name="threshold[]" id="floatingInputGroup1">
-										<label for="floatingInputGroup1">Nombre Calificador</label>
+										<input type="text" disabled value="<?= $threshold['type'] ?>" class="form-control" name="threshold[]" id="floatingInputGroup1">
+										<label for="floatingInputGroup1">Nombre del umbral</label>
 									</div>
 									<div class="form-floating">
-										<input type="text" class="form-control" value="<?= $threshold['value'] ?>" name="threshold_value[]" id="floatingInputGroup1">
+										<input type="text" class="form-control" value="<?= $threshold['value'] ?>" name="thresholds_values[]" id="floatingInputGroup1">
 										<label for="floatingInputGroup1">Valor</label>
 									</div>
 								</div>
