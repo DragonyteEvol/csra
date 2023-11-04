@@ -50,16 +50,16 @@ include_once("components/header.php");
 				<!-- QUALIFIERS -->
 				<div class="card">
 					<div class="card-header">
-						<h5 class="mt-2">Calificadores</h5>
+						<h5 class="mt-2">Umbrales</h5>
 					</div>
-					<div class="card-body" id="qualifiers">
+					<div class="card-body" id="thresholds">
 						<div class="input-group mb-3">
 							<div class="form-floating">
-								<input type="text" class="form-control" name="qualifiers[]" id="floatingInputGroup1">
+								<input type="text" class="form-control" name="thresholds[]" id="floatingInputGroup1">
 								<label for="floatingInputGroup1">Nombre Calificador</label>
 							</div>
 							<div class="form-floating">
-								<input type="text" class="form-control" name="qualifiers_values[]" id="floatingInputGroup1">
+								<input type="text" class="form-control" name="thresholds_values[]" id="floatingInputGroup1">
 								<label for="floatingInputGroup1">Valor</label>
 							</div>
 						</div>
@@ -103,9 +103,9 @@ include_once("components/header.php");
 <script src="/assets/js/search.js"></script>
 <script>
 	function addQualifier(){
-		qualifiers_list = document.getElementById("qualifiers")
-		html = ' <div class="input-group mb-3"> <div class="form-floating"> <input type="text" class="form-control" name="qualifier[]" id="floatingInputGroup1"> <label for="floatingInputGroup1">Nombre Calificador</label> </div> <div class="form-floating"> <input type="text" class="form-control" name="qualifiers_values[]" id="floatingInputGroup1"> <label for="floatingInputGroup1">Valor</label> </div> </div> '
-		qualifiers_list.insertAdjacentHTML("beforeend",html)
+		thresholds_list = document.getElementById("thresholds")
+		html = ' <div class="input-group mb-3"> <div class="form-floating"> <input type="text" class="form-control" name="threshold[]" id="floatingInputGroup1"> <label for="floatingInputGroup1">Nombre Calificador</label> </div> <div class="form-floating"> <input type="text" class="form-control" name="thresholds_values[]" id="floatingInputGroup1"> <label for="floatingInputGroup1">Valor</label> </div> </div> '
+		thresholds_list.insertAdjacentHTML("beforeend",html)
 	}
 	function customFunction(e){
 		console.log(e)
