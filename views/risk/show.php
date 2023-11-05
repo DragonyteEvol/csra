@@ -178,9 +178,13 @@ include_once("components/header.php");
 								</button>
 								<div class="form-check" id="kris"> 
 									<?php  foreach($data["kris"] as $kri): ?>
-									<div>
-										<input type="checkbox" name="kri[]" value="<?= $kri['id'] ?>" class="btn-check" id="<?= $kri['kri'] ?>" autocomplete="off" checked>
-										<label class="btn btn-sm btn-outline-danger my-2 form-control" for="<?= $kri['kri'] ?>"><?= $kri['kri'] ?> <span class="badge bg-secondary"><?= $kri['percentage'] ?>%</span></label>
+									<div class="input-group my-3">
+										<input name='kris[]' value="<?= $kri['id'] ?>" type="checkbox" class="btn-check input-group-text" id="<?= $kri['kri'] ?>" autocomplete='off' checked>
+										<label class='btn btn btn-outline-primary form-control' for="<?= $kri['kri'] ?>"><?= $kri['kri'] ?></label>
+										<div class="form-floating">
+											<input type="number" name='percentages[]' class="form-control" value="<?= $kri['percentage'] ?>" id="floatingInputGrid">
+											<label for="floatingInputGrid">Porcentaje</label>
+										</div>
 									</div>
 									<?php  endforeach; ?>
 								</div>
@@ -232,7 +236,14 @@ include_once("components/header.php");
 		console.log(e)
 		kris = document.getElementById("kris")
 		html = kris.innerHTML
-		html += "<div><input name='kri[]' value='"+e.id+"' type='checkbox' class='btn-check' id='"+e.kri+"' autocomplete='off' checked><label class='btn btn-sm btn-outline-danger my-2 form-control' for='"+e.kri+"'>"+e.kri+" <span class='badge bg-secondary'>"+e.percentage+"%</span></label></div>"
+		html+=`<div class="input-group my-3">
+		<input name='kris[]' value='${e.id}' type="checkbox" class="btn-check input-group-text" id='${e.kri}' autocomplete='off' checked>
+		<label class='btn btn btn-outline-primary form-control' for='${e.kri}'>${e.kri}</label>
+		<div class="form-floating">
+		<input type="number" name='percentages[]' class="form-control" value='0' id="floatingInputGrid">
+		<label for="floatingInputGrid">Porcentaje</label>
+		</div>
+		</div>`
 		kris.innerHTML = html
 		modal = document.getElementById("addKri")
 		modal.hide()

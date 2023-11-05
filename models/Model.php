@@ -135,7 +135,7 @@ class Model{
 			$state = $this->setParams($state);
 			$state->bindParam(":id",$id);
 			$state->execute();
-			$this->refreshDataRelations($id,$this->much_to_much);
+			$this->refreshDataRelations($id);
 		}catch(PDOException $e){
 			var_dump($e);
 			$this->db->rollBack();
@@ -218,7 +218,8 @@ class Model{
 	//BORRA Y RECREA LAS RELACIONES MUCHOS A MUCHOS DE UNA TABLA RELACION
 	//recibe un id de referencia generalemente el id de el elemento de la tabla principal, y las un diccionario de tabla relacion
 	//no retorna informacion
-	public function refreshDataRelations($id_reference,$relations){
+	public function refreshDataRelations($id_reference){
+		$relations = $this->much_to_much;
 		if(count($relations)<>0){
 			foreach(array_keys($relations) as $join){
 				$relation= substr($relations[$join],0,-1);//event

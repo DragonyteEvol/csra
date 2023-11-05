@@ -24,6 +24,22 @@ class RiskModel extends Model{
 	public function insertRisk(){
 		$risk_id = $this->insert(FALSE);
 		/* INSERTAR DEPENDENCIAS RELACIONALES DE KRIS */
+		$this->insertRelation($risk_id);
+		return $risk_id;
+	}
+
+
+	public function refreshDataRelations($id_reference){
+		/* BORRAR RELACIONES EN TABLA DE RELACION MUCHO A MUCHO */
+		$sql = "DELETE FROM risk_kri WHERE risk_id=:risk_id";
+		$state = $this->db->prepare($sql);
+		$state->bindParam(":risk_id",$id_reference);
+		$state->execute();
+		/* RECREAR DEPENDENCIAAS */
+		$this->insertRelation($id_reference);
+	}
+
+	private function insertRelation($risk_id){
 		$sql = "INSERT INTO risk_kri(risk_id,kri_id,percentage) VALUES(:risk_id,:kri_id,:percentage)";
 		$index = 0;
 		foreach($_POST["kris"] as $kri_id){
@@ -31,10 +47,9 @@ class RiskModel extends Model{
 			$state->bindParam(":risk_id",$risk_id);
 			$state->bindParam(":kri_id",$kri_id);
 			$state->bindParam(":percentage",$_POST["percentages"][$index]);
-			$index ++;
 			$state->execute();
+			$index ++;
 		}
-		return $risk_id;
 	}
 
 	public function getScore($kris){
