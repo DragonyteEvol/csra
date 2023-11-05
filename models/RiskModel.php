@@ -21,6 +21,22 @@ class RiskModel extends Model{
 		$this->kri_model = new KriModel();
 	}
 
+	public function insertRisk(){
+		$risk_id = $this->insert(FALSE);
+		/* INSERTAR DEPENDENCIAS RELACIONALES DE KRIS */
+		$sql = "INSERT INTO risk_kri(risk_id,kri_id,percentage) VALUES(:risk_id,:kri_id,:percentage)";
+		$index = 0;
+		foreach($_POST["kris"] as $kri_id){
+			$state = $this->db->prepare($sql);
+			$state->bindParam(":risk_id",$risk_id);
+			$state->bindParam(":kri_id",$kri_id);
+			$state->bindParam(":percentage",$_POST["percentages"][$index]);
+			$index ++;
+			$state->execute();
+		}
+		return $risk_id;
+	}
+
 	public function getScore($kris){
 		$score = 0;
 		$this->data["kri_score"] = array();
@@ -39,6 +55,5 @@ class RiskModel extends Model{
 		/* $this->data["event_score"] = $this->kri_model->data; */
 		return $score;
 	}
-
 }
 ?>

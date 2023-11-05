@@ -3,13 +3,13 @@ include_once("components/header.php");
 ?>
 <div class="container">
 	<!-- ----------------------------------- -->
-	<div class="card">
+	<div class="form-control bg-white rounded-lg shadow my-3">
 		<form action="/risk/insert" method="POST" class="needs-validation">
 			<!-- PRIMERA FILA -->
-			<div class="card-header">
-				<h5>Crear Riesgo</h5>
-			</div>
 			<div class="card-body">
+				<div class="card-title">
+					<h5>Crear Riesgo</h5>
+				</div>
 				<!-- KRI -->
 				<div class="form-floating mb-3">
 					<input type="text" required class="form-control" name="risk" id="floatingInput" placeholder="Insegra un nombre">
@@ -93,7 +93,14 @@ include_once("components/header.php");
 		console.log(e)
 		kris = document.getElementById("kris")
 		html = kris.innerHTML
-		html += "<div><input name='kri[]' value='"+e.id+"' type='checkbox' class='btn-check' id='"+e.kri+"' autocomplete='off' checked><label class='btn btn-sm btn-outline-danger my-2 form-control' for='"+e.kri+"'>"+e.kri+" <span class='badge bg-secondary'>"+e.percentage+"%</span></label></div>"
+		html+=`<div class="input-group my-3">
+	<input name='kris[]' value='${e.id}' type="checkbox" class="btn-check input-group-text" id='${e.kri}' autocomplete='off' checked>
+	<label class='btn btn btn-outline-primary form-control' for='${e.kri}'>${e.kri}</label>
+	<div class="form-floating">
+	  <input type="number" name='percentages[]' class="form-control" value='0' id="floatingInputGrid">
+	  <label for="floatingInputGrid">Porcentaje</label>
+	</div>
+</div>`
 		kris.innerHTML = html
 		modal = document.getElementById("addKri")
 		modal.hide()

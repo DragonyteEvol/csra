@@ -16,5 +16,16 @@ class RiskController extends Controller{
 		$data = $this->model->data;
 		require_once("views/$this->controller/show.php");
 	}
+
+	public function insert(){
+		$this->modelParams();
+		$id = $this->model->insertRisk();
+		if($this->autosave){
+			$this->model->saveChanges();
+			header("Location: /$this->controller");
+		}
+		return $id;
+	}
+
 }
 ?>

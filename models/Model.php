@@ -78,7 +78,8 @@ class Model{
 
 	/* inserta un registro a la base de datos con sus respectivas relaciones */
 	/* 	retorna el id del elemento registrado */
-	public function insert(){
+	/* recibe un parametro de entrada de tipo booleano que define si se carga o no las dependencias de muchos a muchos en la tabla relacional */
+	public function insert($dependencies=TRUE){
 		try{
 			if(!$this->db->inTransaction()){
 				$this->db->beginTransaction();
@@ -90,7 +91,7 @@ class Model{
 			$this->setParams($state);
 			$state->execute();
 			$id = $this->db->lastInsertId();
-			if(count($this->much_to_much)>0){
+			if(count($this->much_to_much)>0 && $dependencies){
 				foreach(array_keys($this->much_to_much) as $join){
 					$relation= substr($this->much_to_much[$join],0,-1);//event
 					$table_relation = substr($join,0,-1) . "_" . $relation;//kri_event
