@@ -34,12 +34,18 @@ include_once("components/header.php");
 
 				<!-- Demo info -->
 				<div class="row text-center mt-4">
-					<div class="col-6 border-right">
-						<div class="h4 font-weight-bold mb-0"><?= $data['score'] ?> P.</div><span class="small text-gray">Puntaje calculado</span>
+					<div class="col-4 border-right">
+						<div class="h4 font-weight-bold mb-0"><?= $data['score'] ?></div><span class="small text-gray">Puntos</span><br><span class="small text-gray">Puntaje calculado</span>
+
 					</div>
-					<div class="col-6">
-						<div class="h4 font-weight-bold mb-0"><?= $data["score_qualified"]["value"] ?></div><span class="small text-gray"><?= $data["score_qualified"]["type"] ?></span>
+					<div class="col-4">
+						<div class="h4 font-weight-bold mb-0"><?= $data["score_qualified"]["value"] ?></div><span class="small text-gray"><?= $data["score_qualified"]["type"] ?></span><br><span class="small text-gray">Puntaje umbral</span>
 					</div>
+					<?php foreach($data["score_figured"] as $score_figured): ?>
+					<div class="col-4">
+						<div class="h4 font-weight-bold mb-0"><?= $score_figured['value'] ?></div><span class="small text-gray"><?= $score_figured['qualifier'] ?></span><br><span class="small text-gray">Puntaje general</span>
+					</div>
+					<?php endforeach;  ?>
 				</div>
 				<!-- END -->
 			</div>

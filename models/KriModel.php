@@ -1,6 +1,7 @@
 <?php 
 require_once("models/ThresholdModel.php");
 require_once("models/EventModel.php");
+require_once("models/QualifierModel.php");
 class KriModel extends Model{
 	protected $table = "kris";
 	protected $columns = ["kri","objective","propertie_id","syntax"];
@@ -14,6 +15,7 @@ class KriModel extends Model{
 		parent::__construct();
 		$this->event_model = new EventModel(); //AFECTA LA TABLA EVENTS
 		$this->threshold_model = new ThresholdModel(); //AFECTA A LA TABLA QUALIFIERS
+		$this->qualifier_model = new QualifierModel(); //AFECTA A LA TABLA QUALIFIERS
 	}
 
 	/* selecciona un kri de la base de datos calcula su puntaje */
@@ -39,8 +41,11 @@ class KriModel extends Model{
 		$this->data["syntax_abstract"] = $this->event_model->data["syntax_abstract"];
 		$this->data["syntax"] = $this->event_model->data["syntax"];
 		/* puntaje ponderado por calificadores */
+		/* valor de umbral */
 		$this->data["score_qualified"]=$this->threshold_model->getThresholdScore($id,$this->data["score"]);
-		return $this->data["score_qualified"];
+		/* valor de calificador */
+		$this->data["score_figured"] = $this->qualifier_model->getScore($this->data["score_qualified"]["type"]);
+		return $this->data["score_figured"];
 	}
 
 }

@@ -1,5 +1,6 @@
 <?php 
 require_once("models/KriModel.php");
+require_once("models/QualifierModel.php");
 class RiskModel extends Model{
 	/* tabla en la que actua  este modelo en base de datos */
 	protected $table = "risks";
@@ -19,6 +20,7 @@ class RiskModel extends Model{
 	public function __construct(){
 		parent::__construct();
 		$this->kri_model = new KriModel();
+		$this->qualifier_model= new QualifierModel();
 	}
 
 	public function insertRisk(){
@@ -58,16 +60,18 @@ class RiskModel extends Model{
 		$this->data["event_score"] = array();
 		foreach($this->data["kris"] as $kri){
 			$kri_score = $this->kri_model->getScore($kri["id"],$kri["syntax"]);
-			$kri["score"] = $kri_score;
+			$kri["score"] = $this->kri_model->data["score_qualified"];
 			$kri["syntax_abstract"] = $this->kri_model->data["syntax_abstract"];
 			$kri["syntax"] = $this->kri_model->data["syntax"];
 			$kri_score = $kri_score["value"] * ($kri["percentage"]/100);
 			$score += $kri_score;
 			//AGREGAMOS EL KRI CON SU PUNTAJE A LA LISTA DATA PARA USARLA EN LA VISTA 
 			array_push($this->data["kri_score"],$kri);
+			//AGREGAMOS EL CONTEO DE EVENTOS A LISTA PARA USARLA EN LA VISTA
 			$this->data["event_score"] = array_merge($this->data["event_score"],$this->kri_model->data["event_score"]);
 		};
 		/* $this->data["event_score"] = $this->kri_model->data; */
+		$this->data["score_figured"] = $this->qualifier_model->getQualifier($score);
 		return $score;
 	}
 }

@@ -34,7 +34,7 @@ include_once("components/header.php");
 							<div class="h4 font-weight-bold mb-0"><?= $data['score'] ?> P.</div><span class="small text-gray">Puntaje calculado</span>
 						</div>
 						<div class="col-6">
-							<div class="h4 font-weight-bold mb-0"><?= $data["score_qualified"]["value"] ?></div><span class="small text-gray"><?= $data["score_qualified"]["type"] ?></span>
+						<div class="h4 font-weight-bold mb-0"><?= $data["score_figured"]["value"] ?></div><span class="small text-gray"><?= $data["score_figured"]["qualifier"] ?></span>
 						</div>
 					</div>
 					<!-- END -->
