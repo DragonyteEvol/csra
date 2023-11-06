@@ -24,11 +24,12 @@
 		  <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Mas</a>
 		  <ul class="dropdown-menu">
 			<li><a class="dropdown-item" href="/user">Usuarios</a></li>
+			<li><a class="dropdown-item" href="/role">Roles</a></li>
 			<li><a class="dropdown-item" href="/source">Fuentes</a></li>
 			<li><a class="dropdown-item" href="/propertie">Propiedades</a></li>
 			<li><a class="dropdown-item" href="/type">Tipos</a></li>
 			<li><a class="dropdown-item" href="/module">Modulos</a></li>
-			<li><a class="dropdown-item" href="/configuration">Configuracion</a></li>
+			<li><a class="dropdown-item" href="/qualifier">Calificadores</a></li>
 		  </ul>
 		</li>
 	  </ul>
