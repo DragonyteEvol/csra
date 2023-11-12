@@ -9,7 +9,7 @@ include_once("components/header.php");
 					<div class="input-group mb-3">
 						<input id="search" type="text" class="form-control" placeholder="Buscar usuario" aria-label="Example text with button addon" aria-describedby="button-addon1">
 <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalCreate">
->
+*
 </button>
 					</div>
 				</div>
@@ -22,6 +22,7 @@ include_once("components/header.php");
 				<th scope="col">#</th>
 				<th scope="col">Usuario</th>
 				<th scope="col">Email</th>
+				<th scope="col">Rol</th>
 				<th scope="col">Fecha de creacion</th>
 			</tr>
 		</thead>
@@ -35,6 +36,7 @@ include_once("components/header.php");
 					</a>
 				</td>
 				<td><?= $user["email"] ?></td>
+				<td><?= $user["role"] ?></td>
 				<td><?= $user["created_at"] ?></td>
 			</tr>
 			<?php  endforeach; ?>

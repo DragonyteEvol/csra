@@ -23,7 +23,7 @@ class Model{
 		if(count($this->one_to_one)<>0){
 			foreach($this->one_to_one as $join){
 				$column = substr($join,0,-1) . "_id";
-				$sql = $sql . "INNER JOIN $join ON $this->table.$column=$join.id ";
+				$sql = $sql . "LEFT JOIN $join ON $this->table.$column=$join.id ";
 			}
 		}
 		/* ejecucion de query */

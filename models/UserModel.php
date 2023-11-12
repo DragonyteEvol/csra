@@ -1,9 +1,10 @@
 <?php 
 class UserModel extends Model{
 	protected $table = "users";
-	protected $columns = ["name","email","password"];
-	protected $args = [":name",":email",":password"];
-	protected $one_to_much= ["users"=>"access"];
+	protected $columns = ["name","email","password","role_id"];
+	protected $args = [":name",":email",":password",":role_id"];
+	protected $one_to_one= ["roles"];
+
 
 	public function __construct(){
 		parent::__construct();
