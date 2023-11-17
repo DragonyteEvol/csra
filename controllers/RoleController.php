@@ -8,5 +8,14 @@ class RoleController extends Controller{
 		parent::__construct();
 		$this->model = new RoleModel();
 	}
+
+	public function index(){
+		$data=$this->model->getAllRole();
+		require_once("views/$this->controller/index.php");
+	}
+
+	public function insert(){
+		var_dump($_POST["risk"]);
+	}
 }
 ?>

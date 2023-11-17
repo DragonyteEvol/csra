@@ -56,6 +56,55 @@ include_once("components/header.php");
 						<input type="text" required class="form-control" name="role" id="floatingInput" placeholder="Ingresa un nombre">
 						<label for="floatingInput">Ingresa un nombre de rol</label>
 					</div>
+					<!-- TABLA DE MODULOS -->
+					<table class="table">
+						<thead>
+							<tr>
+								<th scope="col">Modulo</th>
+								<th scope="col">Insertar</th>
+								<th scope="col">Leer</th>
+								<th scope="col">Modificar</th>
+								<th scope="col">Borrar</th>
+							</tr>
+						</thead>
+						<tbody id="modules">
+							<?php  foreach($data["modules"] as $module): ?>
+							<tr>
+								<!-- MODULO -->
+								<th scope="row">
+									<div class="input-group">
+										<input name='<?=$module["module"]?>[]' value="<?= $module['id'] ?>" type="checkbox" class="btn-check input-group-text" id="<?= $module['module'] ?>" autocomplete='off' checked>
+										<label class='btn btn btn-outline-primary form-control' for="<?= $module['module'] ?>"><?= $module['module'] ?></label>
+									</div>
+								</th>
+								<!-- C -->
+								<td>
+									<div class="form-check form-switch">
+										<input name="<?= $module['module'] ?>W" class="form-check-input" onclick="changeState(this.id)" type="checkbox" role="switch" id="<?= $module['id'] ?>W">
+									</div>
+								</td>
+								<!-- R -->
+								<td>
+									<div class="form-check form-switch">
+										<input name="<?= $module['module'] ?>R" onclick="changeState(this.id)" class="form-check-input" type="checkbox" role="switch" id="<?= $module['id'] ?>R">
+									</div>
+								</td>
+								<!-- U -->
+								<td>
+									<div class="form-check form-switch">
+										<input  name="<?= $module['module'] ?>U" onclick="changeState(this.id)" class="form-check-input" type="checkbox" role="switch" id="<?= $module['id'] ?>U">
+									</div>
+								</td>
+								<!-- D -->
+								<td>
+									<div class="form-check form-switch">
+										<input  name="<?= $module['module'] ?>D" onclick="changeState(this.id)" class="form-check-input" type="checkbox" role="switch" id="<?= $module['id'] ?>D">
+									</div>
+								</td>
+							</tr>
+							<?php  endforeach; ?>
+						</tbody>
+					</table>
 					<div class="modal-footer">
 						<button type="button" class="btn btn-secondary form-control" data-bs-dismiss="modal">Cerrar</button>
 						<button type="submit" class="btn btn-primary form-control">Enviar</button>
@@ -68,6 +117,15 @@ include_once("components/header.php");
 <script src="https://cdn.jsdelivr.net/npm/axios@1.1.2/dist/axios.min.js"></script>
 <script src="assets/js/search.js"></script>
 <script>
+	function changeState(id){
+		check = document.getElementById(id);
+		if(check.checked){
+			check.value=1
+		}else{
+			check.value=0
+		}
+
+	}
 	searchTable({
 		componentEvent: "search",
 		listOptions: "roles",
