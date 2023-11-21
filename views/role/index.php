@@ -46,7 +46,7 @@ include_once("components/header.php");
 	<div class="modal-dialog">
 		<div class="modal-content">
 			<div class="modal-header">
-				<h5 class="modal-title">Crear calificador</h5>
+				<h5 class="modal-title">Crear Rol</h5>
 				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 			</div>
 			<div class="modal-body">
@@ -73,32 +73,32 @@ include_once("components/header.php");
 								<!-- MODULO -->
 								<th scope="row">
 									<div class="input-group">
-										<input name='<?=$module["module"]?>[]' value="<?= $module['id'] ?>" type="checkbox" class="btn-check input-group-text" id="<?= $module['module'] ?>" autocomplete='off' checked>
-										<label class='btn btn btn-outline-primary form-control' for="<?= $module['module'] ?>"><?= $module['module'] ?></label>
+										<input type="button" class="btn-check input-group-text" id="<?= $module['module'] ?>" autocomplete='off' checked>
+										<label class='btn btn btn-primary form-control' for="<?= $module['module'] ?>"><?= $module['module'] ?></label>
 									</div>
 								</th>
 								<!-- C -->
 								<td>
 									<div class="form-check form-switch">
-										<input name="<?= $module['module'] ?>W" class="form-check-input" onclick="changeState(this.id)" type="checkbox" role="switch" id="<?= $module['id'] ?>W">
+										<input name="<?= $module['module'] ?>W" class="form-check-input" type="checkbox" role="switch">
 									</div>
 								</td>
 								<!-- R -->
 								<td>
 									<div class="form-check form-switch">
-										<input name="<?= $module['module'] ?>R" onclick="changeState(this.id)" class="form-check-input" type="checkbox" role="switch" id="<?= $module['id'] ?>R">
+										<input name="<?= $module['module'] ?>R" class="form-check-input" type="checkbox" role="switch">
 									</div>
 								</td>
 								<!-- U -->
 								<td>
 									<div class="form-check form-switch">
-										<input  name="<?= $module['module'] ?>U" onclick="changeState(this.id)" class="form-check-input" type="checkbox" role="switch" id="<?= $module['id'] ?>U">
+										<input  name="<?= $module['module'] ?>U" class="form-check-input" type="checkbox" role="switch">
 									</div>
 								</td>
 								<!-- D -->
 								<td>
 									<div class="form-check form-switch">
-										<input  name="<?= $module['module'] ?>D" onclick="changeState(this.id)" class="form-check-input" type="checkbox" role="switch" id="<?= $module['id'] ?>D">
+										<input  name="<?= $module['module'] ?>D" class="form-check-input" type="checkbox" role="switch">
 									</div>
 								</td>
 							</tr>

@@ -1,5 +1,6 @@
 <?php
 require_once("models/RoleModel.php");
+require_once("models/ModuleModel.php");
 class RoleController extends Controller{
 
 	public $autosave = true;	
@@ -7,6 +8,7 @@ class RoleController extends Controller{
 	public function __construct(){
 		parent::__construct();
 		$this->model = new RoleModel();
+		$this->module_model= new ModuleModel();
 	}
 
 	public function index(){
@@ -15,7 +17,14 @@ class RoleController extends Controller{
 	}
 
 	public function insert(){
-		var_dump($_POST["risk"]);
+		$this->modelParams();
+		$id = $this->model->insertRole();
+		if($this->autosave){
+			$this->model->saveChanges();
+			header("Location: /$this->controller");
+		}
+		return $id;
 	}
+
 }
 ?>
