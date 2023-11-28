@@ -41,11 +41,9 @@ include_once("components/header.php");
 					<div class="col-4">
 						<div class="h4 font-weight-bold mb-0"><?= $data["score_qualified"]["value"] ?></div><span class="small text-gray"><?= $data["score_qualified"]["type"] ?></span><br><span class="small text-gray">Puntaje umbral</span>
 					</div>
-					<?php foreach($data["score_figured"] as $score_figured): ?>
 					<div class="col-4">
-						<div class="h4 font-weight-bold mb-0"><?= $score_figured['value'] ?></div><span class="small text-gray"><?= $score_figured['qualifier'] ?></span><br><span class="small text-gray">Puntaje general</span>
+						<div class="h4 font-weight-bold mb-0"><?= $data["score_figured"]['value'] ?></div><span class="small text-gray"><?= $data["score_figured"]['qualifier'] ?></span><br><span class="small text-gray">Puntaje general</span>
 					</div>
-					<?php endforeach;  ?>
 				</div>
 				<!-- END -->
 			</div>
