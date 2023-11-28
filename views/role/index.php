@@ -34,7 +34,6 @@ include_once("components/header.php");
 						<?= $role["role"] ?>
 					</a>
 				</td>
-				<td><?= $role["value"] ?></td>
 				<td><?= $role["created_at"] ?></td>
 			</tr>
 			<?php  endforeach; ?>
@@ -80,25 +79,25 @@ include_once("components/header.php");
 								<!-- C -->
 								<td>
 									<div class="form-check form-switch">
-										<input name="<?= $module['module'] ?>W" class="form-check-input" type="checkbox" role="switch">
+										<input name="<?= $module['module'] ?>W" class="form-check-input" type="checkbox" role="switch" checked>
 									</div>
 								</td>
 								<!-- R -->
 								<td>
 									<div class="form-check form-switch">
-										<input name="<?= $module['module'] ?>R" class="form-check-input" type="checkbox" role="switch">
+										<input name="<?= $module['module'] ?>R" class="form-check-input" type="checkbox" role="switch" checked>
 									</div>
 								</td>
 								<!-- U -->
 								<td>
 									<div class="form-check form-switch">
-										<input  name="<?= $module['module'] ?>U" class="form-check-input" type="checkbox" role="switch">
+										<input  name="<?= $module['module'] ?>U" class="form-check-input" type="checkbox" role="switch" checked>
 									</div>
 								</td>
 								<!-- D -->
 								<td>
 									<div class="form-check form-switch">
-										<input  name="<?= $module['module'] ?>D" class="form-check-input" type="checkbox" role="switch">
+										<input  name="<?= $module['module'] ?>D" class="form-check-input" type="checkbox" role="switch" checked>
 									</div>
 								</td>
 							</tr>

@@ -32,41 +32,38 @@ include_once("components/header.php");
 							<!-- MODULO -->
 							<th scope="row"><?= $module["id_master"] ?>
 								<div class="input-group">
-									<input name='<?=$module["module"]?>[]' value="<?= $module['id'] ?>" type="checkbox" class="btn-check input-group-text" id="<?= $module['module'] ?>" autocomplete='off' checked>
+									<input value="<?= $module['id'] ?>" type="checkbox" class="btn-check input-group-text" id="<?= $module['module'] ?>" autocomplete='off' checked>
 									<label class='btn btn btn-outline-primary form-control' for="<?= $module['module'] ?>"><?= $module['module'] ?></label>
 								</div>
 							</th>
 							<!-- C -->
 							<td>
 								<div class="form-check form-switch">
-									<input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked" checked>
+									<input name="<?= $module['module'] ?>W" class="form-check-input" type="checkbox" role="switch" <?= $module["w"] ? "checked" : "" ?>>
 								</div>
 							</td>
 							<!-- R -->
 							<td>
 								<div class="form-check form-switch">
-									<input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked" checked>
+									<input name="<?= $module['module'] ?>R" class="form-check-input" type="checkbox" role="switch" <?= $module["r"] ? "checked" : "" ?>>
 								</div>
 							</td>
 							<!-- U -->
 							<td>
 								<div class="form-check form-switch">
-									<input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked" checked>
+									<input name="<?= $module['module'] ?>U" class="form-check-input" type="checkbox" role="switch" <?= $module["u"] ? "checked" : "" ?>>
 								</div>
 							</td>
 							<!-- D -->
 							<td>
 								<div class="form-check form-switch">
-									<input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked" checked>
+									<input name="<?= $module['module'] ?>D" class="form-check-input" type="checkbox" role="switch" <?= $module["d"] ? "checked" : "" ?>>
 								</div>
 							</td>
 						</tr>
 						<?php  endforeach; ?>
 					</tbody>
 				</table>
-				<button name="events" type="button" class="form-control btn btn-outline-primary btn-sm" data-bs-toggle="modal" data-bs-target="#addModule">
-					Añadir Modulo	
-				</button>
 				<div class="card-footer">
 					<div class="row">
 						<div class="col-6">
@@ -81,72 +78,10 @@ include_once("components/header.php");
 		</form>
 	</div>
 	<?php  endforeach; ?>
-	<!-- FORMULARIO DE ADICION DE MODULOS -->
-	<div class="modal fade" id="addModule" tabindex="-1" aria-labelledby="addModuleLabel" aria-hidden="true">
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h1 class="modal-title fs-5" id="addModuleLabel">Buscar Modulo</h1>
-					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-				</div>
-				<div class="modal-body">
-					<div class="form-floating mb-3">
-						<input type="text" required class="form-control" id="searchModule" placeholder="Insegra un nombre">
-						<label for="floatingInput">Buscar...</label>
-					</div>
-					<div class="justify-content-center" id="datalistOptionsModule">
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/axios@1.1.2/dist/axios.min.js"></script>
 <script src="/assets/js/search.js"></script>
 <script>
-	function customFunction(e){
-		console.log(e)
-		Modules = document.getElementById("modules")
-		html = Modules.innerHTML
-		html+=
-`
-<tr>
-							<th scope="row">
-								<div class="input-group">
-									<input name='${e.module}[]' value="${e.id}" type="checkbox" class="btn-check input-group-text" id="${e.module}" autocomplete='off' checked>
-									<label class='btn btn btn-outline-primary form-control' for="${e.module}}">${e.module}</label>
-								</div>
-							</th>
-							<!-- C -->
-							<td>
-								<div class="form-check form-switch">
-									<input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked">
-								</div>
-							</td>
-							<!-- R -->
-							<td>
-								<div class="form-check form-switch">
-									<input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked">
-								</div>
-							</td>
-							<!-- U -->
-							<td>
-								<div class="form-check form-switch">
-									<input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked">
-								</div>
-							</td>
-							<!-- D -->
-							<td>
-								<div class="form-check form-switch">
-									<input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked">
-								</div>
-							</td>
-						</tr>
-`
-		Modules.innerHTML = html
-		modal = document.getElementById("addModule")
-		modal.hide()
-	}
 	//EVENTOS
 	searchEvent({
 		componentEvent: "searchModule",

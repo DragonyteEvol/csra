@@ -19,10 +19,8 @@ class RoleController extends Controller{
 	public function insert(){
 		$this->modelParams();
 		$id = $this->model->insertRole();
-		if($this->autosave){
-			$this->model->saveChanges();
-			header("Location: /$this->controller");
-		}
+		$this->model->saveChanges();
+		header("Location: /$this->controller");
 		return $id;
 	}
 
