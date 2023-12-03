@@ -3,9 +3,9 @@ include_once("components/header.php");
 ?>
 <div class="container">
 	<!-- ----------------------------------- -->
-	<?php if($data["score"]>=3): ?>
+	<?php if($data["score"]>3): ?>
 	<div class="alert alert-warning alert-dismissible fade show my-3" role="alert">
-		<strong>Advertencia!</strong> Se recomienda revisar los porcentajes de kris para este riesgo 
+		<strong>Advertencia!</strong> Porfavor, valide porcentajes de kris 
 		<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
 	</div>
 	<?php  endif; ?>
