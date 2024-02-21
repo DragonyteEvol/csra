@@ -1,8 +1,14 @@
 <?php 
 require_once("models/QualifierModel.php");
 class ThresholdModel extends Model{
+
+	/* tabla en la que actua  este modelo en base de datos */
 	protected $table = "thresholds";
+
+	/* columns que modifica el modelo en base de datos */
 	protected $columns = ["type","value","kri_id"];
+
+	/* columnas para modificacion en base de datos con consulta preparada */
 	protected $args= [":type",":value",":kri_id"];
 
 	public function __construct(){
@@ -21,7 +27,7 @@ class ThresholdModel extends Model{
 		return ["type"=>$type,"value"=>$value];
 	}
 
-	/* inserta los calificadores de un kri */
+	/* inserta los umbrales de un kri */
 	/* recibe el id del kri y la conexion con base de datos para continuar la transaccion */
 	/* no retorna informacion */
 	public function insertThresholds($kri_id,$db){

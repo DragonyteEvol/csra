@@ -5,6 +5,9 @@ require_once("models/EventModel.php");
 require_once("models/QualifierModel.php");
 class KriController extends Controller{
 
+	/* denota si se debe generar un commit en la base de datos para guardar la informacion de la ultima transaccion en curso */
+	/* true genera commit automaticamente */
+	/* false no genera commit hasta que termine la transaccion */
 	public $autosave = false;
 
 	public function __construct(){
@@ -36,6 +39,8 @@ class KriController extends Controller{
 		require_once("views/$this->controller/show.php");
 	}
 
+	/* modifica un kri y sus umbrales */
+	/* retorna un redirect al index del controlador */
 	public function update(){
 		$id = $_GET["id"];
 		$this->modelParams();

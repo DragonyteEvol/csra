@@ -1,3 +1,6 @@
+// -----------------------------------DANGERRRRRRRR--------------------------------------------------------------------------------------------------------
+// Cifrar por blob el acceso a este archivo
+// -----------------------------------------------------------------------------------------------------------------------------------------------------
 // crea los eventos necesarios para una busqueda y sus consecuencias
 // recibe como parametro de entra un json con la configuracion de la busqueda
 

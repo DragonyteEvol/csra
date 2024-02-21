@@ -7,6 +7,9 @@ class SourceController extends Controller{
 		$this->model = new SourceModel();
 	}
 
+	/* ----------------------------------------------ALERTA MODIFICAR VISTA--------------------------------------------------------------------------------- */
+	/* genera un vista de html con las fuentes y las muestra en pantalla */	
+	/* retorna una vista con el html creado y una lista con las fuentes seleccionadas */
 	public function index()
 	{
 		$data = $this->model->getAll();

@@ -7,6 +7,8 @@ class TemplateController extends Controller{
 		$this->model = new TemplateModel();
 	}
 
+	/* Genera una busqueda de un evento en osiem */
+	/* retorna la informacion consultado en formato json para ser consumida por el frontend */
 	public function search(){
 		$search = $_GET["id"]; 
 		$data = $this->model->search($search);

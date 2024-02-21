@@ -3,12 +3,25 @@ require_once("models/ThresholdModel.php");
 require_once("models/EventModel.php");
 require_once("models/QualifierModel.php");
 class KriModel extends Model{
+
+	/* tabla en la que actua  este modelo en base de datos */
 	protected $table = "kris";
+
+	/* columns que modifica el modelo en base de datos */
 	protected $columns = ["kri","objective","propertie_id","syntax"];
+
+	/* columnas para modificacion en base de datos con consulta preparada */
 	protected $args= [":kri",":objective",":propertie_id",":syntax"];
+
+	/* relaciones entre bases de datos uno a one*/
 	protected $one_to_one= ["kris"=>"properties"];
+
+	/* relaciones entre tablas de bases de datos de uno a muchos */
 	protected $one_to_much= ["kris"=>"thresholds"];
+
+	/* relaciones entre bases de datos de muchos a muchos se debe definir las dos tablas que se desean relacionar */
 	protected $much_to_much= ["kris"=>"events"];
+
 	protected $table_relations = ["thresholds"=>["type","value"],"events"];
 
 	public function __construct(){

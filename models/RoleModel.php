@@ -1,10 +1,20 @@
 <?php 
 require_once("models/ModuleModel.php");
 class RoleModel extends Model{
+
+	/* lista de caracteres que definen los accesos a un modulo R=Read, W= Write,D= Delete, U=update */
 	private $accesses = ["R","W","D","U"];
+	
+	/* tabla en la que actua  este modelo en base de datos */
 	protected $table = "roles";
+
+	/* columns que modifica el modelo en base de datos */
 	protected $columns = ["role"];
+
+	/* columnas para modificacion en base de datos con consulta preparada */
 	protected $args= [":role"];
+
+	/* relaciones entre bases de datos de muchos a muchos se debe definir las dos tablas que se desean relacionar */
 	protected $much_to_much = ["roles"=>"modules"];
 
 	public function __construct(){
@@ -12,6 +22,8 @@ class RoleModel extends Model{
 		$this->module_model = new ModuleModel();
 	}
 
+    /* genera una lista con todos los roles y modulos asociados al rol */
+	/* retorna una lista */
 	public function getAllRole(){
 		$this->getAll();
 		$this->module_model->getAll();
@@ -26,6 +38,7 @@ class RoleModel extends Model{
 		return $role_id;
 	}
 
+	/* borra y recrea las dependencias de un rol */
 	public function refreshDataRelations($id_reference){
 		/* BORRAR RELACIONES EN TABLA DE RELACION MUCHO A MUCHO */
 		$sql = "DELETE FROM role_module WHERE role_id=:role_id";

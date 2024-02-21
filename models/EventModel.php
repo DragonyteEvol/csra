@@ -1,9 +1,20 @@
 <?php 
+/* El modelo tiene un argumento adicional que corresponde a la tabla en la cual se busca la cantidad de apariciones de un evento en osiem */
 class EventModel extends Model{
+
+	/* tabla en la que actua  este modelo en base de datos */
 	protected $table = "events";
+
+	/* columns que modifica el modelo en base de datos */
 	protected $columns = ["event","type","source_id","event_id"];
+
+	/* columnas para modificacion en base de datos con consulta preparada */
 	protected $args= [":event",":type",":source_id",":event_id"];
+
+	/* tabla en la que se encuentran las apariciones de los eventos de osim */
 	protected $record_table="records";
+
+	/* columna de base de datos sobre la cual se realiza la busqueda recursiva*/
 	protected $search_criteria="event";
 
 	public function __construct(){
