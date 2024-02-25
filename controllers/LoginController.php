@@ -18,6 +18,7 @@ class LoginController extends Controller{
 				session_start();
 				$_SESSION["user"] = $user[0]["name"];
 				$_SESSION["id"] = $user[0]["id"];
+				header("Location: /risk");
 			}else{
 				$_SESSION["error"] = "error";
 				header("Location: /login");
