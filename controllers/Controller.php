@@ -69,6 +69,7 @@ class Controller{
 		$this->checkAccess("d");
 		$id = $_GET["id"];
 		$this->model->delete($id);
+		$this->model->saveChanges();
 		header("Location: /$this->controller");
 	}
 

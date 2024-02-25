@@ -198,12 +198,11 @@ include_once("components/header.php");
 						</div>
 					</div>
 				</div>
-				<?php  endforeach; ?>
 				<div>
 					<!-- END FIELD -->
 					<div class="row">
 						<div class="col-6">
-							<button type="reset" class="btn btn-outline-secondary form-control">Limpiar</button>
+							<a class="btn btn-outline-danger form-control" href="/kri/delete/<?= $kri['master_id'] ?>">Eliminar</a>
 						</div>
 						<div class="col-6">
 							<button type="submit" class="btn btn-primary form-control">Actualizar</button>
@@ -214,6 +213,7 @@ include_once("components/header.php");
 
 		</form>
 
+		<?php  endforeach; ?>
 	</div>
 
 	<!-- FORMULARIO DE ADICION DE EVENTOS -->

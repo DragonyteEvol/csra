@@ -203,7 +203,7 @@ include_once("components/header.php");
 				<div class="card-footer">
 					<div class="row">
 						<div class="col-6">
-							<button type="reset" class="btn btn-outline-secondary form-control">Limpiar</button>
+							<a class="btn btn-outline-danger form-control" href="/risk/delete/<?= $risk['master_id'] ?>">Eliminar</a>
 						</div>
 						<div class="col-6">
 							<button type="submit" class="btn btn-primary form-control">Actualizar</button>

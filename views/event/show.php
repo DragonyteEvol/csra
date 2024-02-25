@@ -40,8 +40,7 @@ include_once("components/header.php");
 								<div class="form-floating mb-3">
 									<select name="type" class="form-select" id="datalistOptions" aria-label="">
 										<option value="automatic">automatic</option>
-										<option value="manual">manual</option>
-									</select>
+										<option value="manual">manual</option> </select>
 									<label for="floatingSelect">Tipo de evento</label>
 								</div>
 							</div>
@@ -63,7 +62,7 @@ include_once("components/header.php");
 						<!-- END FIELD -->
 						<div class="row">
 							<div class="col-6">
-								<button type="reset" class="btn btn-outline-secondary form-control">Limpiar</button>
+								<a class="btn btn-outline-danger form-control" href="/event/delete/<?= $event['master_id'] ?>">Eliminar</a>
 							</div>
 							<div class="col-6">
 								<button type="submit" class="btn btn-primary form-control">Actualizar</button>
