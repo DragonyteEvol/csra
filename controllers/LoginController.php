@@ -11,13 +11,13 @@ class LoginController extends Controller{
 	/* valdia si los datos ingresador en el formulario de inicio de sesion */ 
 	/* 	coinciden y crea una sesion si es asi */
 	public function login(){
-		foreach(array_keys($_POST) as $key){
-			$this->model->{$key} = $_POST[$key];
-		}
+		$this->modelParams();
 		$user = $this->model->selectByEmail();
 		if(count($user)>0){
 			if(password_verify($this->model->password,$user[0]["password"])){
-				$_SESSION["user"] = $user[0]->name;
+				session_start();
+				$_SESSION["user"] = $user[0]["name"];
+				$_SESSION["id"] = $user[0]["id"];
 			}else{
 				$_SESSION["error"] = "error";
 				header("Location: /login");

@@ -22,6 +22,7 @@ class KriController extends Controller{
 	/* inserta un kri en base de datos y sus calificadores */
 	/* 	retorna una redireccion al index de kri */
 	public function insert(){
+		$this->checkAccess("w");
 		$this->modelParams();
 		$id = $this->model->insert();
 		$this->threshold_model->insertThresholds($id,$this->model->db);
@@ -33,6 +34,7 @@ class KriController extends Controller{
 	/* calcula el puntaje del kri */
 	/* returna una vista con la informacion del kri y su puntaje*/
 	public function show(){
+		$this->checkAccess("r");
 		$id = $_GET["id"]; 
 		$data = $this->model->getByIdScore($id);
 		/* VISTA */
@@ -42,6 +44,7 @@ class KriController extends Controller{
 	/* modifica un kri y sus umbrales */
 	/* retorna un redirect al index del controlador */
 	public function update(){
+		$this->checkAccess("u");
 		$id = $_GET["id"];
 		$this->modelParams();
 		$this->model->update($id);
@@ -52,6 +55,7 @@ class KriController extends Controller{
 
 	/* retona la vista de inicio y trae sus datos en lista */
 	public function create(){
+		$this->checkAccess("w");
 		$data=$this->qualifier_model->getAll();
 		require_once("views/$this->controller/create.php");
 	}

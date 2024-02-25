@@ -12,6 +12,7 @@ class SourceController extends Controller{
 	/* retorna una vista con el html creado y una lista con las fuentes seleccionadas */
 	public function index()
 	{
+		$this->checkAccess("r");
 		$data = $this->model->getAll();
 		foreach($data as $source){
 			echo $source["vendor"] . "<BR>";

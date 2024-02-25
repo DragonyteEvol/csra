@@ -6,11 +6,6 @@ class Model{
 
 	public function __construct($second_database = FALSE){
 		$this->db=Connection::connect($second_database);
-		if($this->login_protect){
-			if(empty($_SESSION["user"])){
-				header("location:/");
-			}	
-		}
 	}
 
 	/* permite ejecutar consultas sql customizadas a cada modelo */

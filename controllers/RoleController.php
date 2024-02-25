@@ -16,6 +16,7 @@ class RoleController extends Controller{
 
 	/* retorna la vista de inicio con la lista de todos los roles en base de datos */
 	public function index(){
+		$this->checkAccess("r");
 		$data=$this->model->getAllRole();
 		require_once("views/$this->controller/index.php");
 	}
@@ -23,6 +24,7 @@ class RoleController extends Controller{
 	/* crea un elemento en base de datos */
 	/* retorna el id del elemento creado */
 	public function insert(){
+		$this->checkAccess("w");
 		$this->modelParams();
 		$id = $this->model->insertRole();
 		$this->model->saveChanges();

@@ -14,6 +14,7 @@ class RiskController extends Controller{
 
 	/* retorna la vista de mostrar un solo elemento con la informacion del elemnto */
 	public function show(){
+		$this->checkAccess("r");
 		$id = $_GET["id"]; 
 		$data=$this->model->selectById($id);
 		$this->model->data["score"] = $this->model->getScore($data["kris"]);
@@ -24,6 +25,7 @@ class RiskController extends Controller{
 	/* crea un elemento en la base de datos */
 	/* retorna el id del elemento creado */
 	public function insert(){
+		$this->checkAccess("w");
 		$this->modelParams();
 		$id = $this->model->insertRisk();
 		if($this->autosave){

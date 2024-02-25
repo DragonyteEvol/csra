@@ -13,7 +13,6 @@ class UserModel extends Model{
 	/* lista con tablas a relacionar el modelo de forma uno a uno */ 
 	protected $one_to_one= ["roles"];
 
-
 	public function __construct(){
 		parent::__construct();
 	}
