@@ -20,6 +20,9 @@ class AccessModel extends Model{
 	/* recibe un entero de entrada que coincide con el id del usuario logeado se carga por cookie */
 	/* retorna una lista relacionada con los accesos asociados a el rol del usuario consultado */
 	public function getAccess($id){
+		if(is_null($id)){
+			return;
+		}
 		/* re seleccionamos el usuario desde el modelo para evitar accesos indebidos desde la cookie */
 		$users=$this->user_model->selectById($id);
 		foreach($users["users"] as $user){

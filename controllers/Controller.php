@@ -15,7 +15,7 @@ class Controller{
 		if(!isset($_SESSION["user"])&&
 			!in_array($this->controller,
 				$this->module_with_out_access)){
-			header("location:/login");
+				header("location:/login");
 		}
 	}
 
@@ -92,9 +92,13 @@ class Controller{
 		/* generar accesos */
 		$access_model = new AccessModel();
 		$accesses = $access_model->getAccess($_SESSION["id"]);
+		//en los modulos no protegidos la variable access esta vacia
+		if(is_null($accesses)){
+			return;
+		}
 		foreach($accesses as $access){
 			if($access["module"]==$this->controller && $access[$bit]==1){
-				return true;
+				return;
 			}	
 		}		
 		header("location:/utils/unauthorized");

@@ -27,5 +27,14 @@ class LoginController extends Controller{
 			header("Location: /login");
 		}
 	}
+
+	public function logout(){
+		session_start();
+			if(session_destroy()){
+				header("location: /");
+			}else{
+				header("location: /utils/unexpected");
+			}	
+	}
 }
 ?>
